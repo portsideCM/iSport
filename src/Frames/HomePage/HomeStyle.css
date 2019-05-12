@@ -3,22 +3,26 @@
     -fx-background-radius: 18;
 }
 
-.burgerButton{
-    -fx-background-color: rgba(175, 175,175,0.8);
-    -fx-background-radius: 10;
-}
+ .burgerButton{
+     -fx-background-color: rgba(175, 175,175,0.8);
+     -fx-background-radius: 10;
+ }
 
-.textStyle{
-    -fx-text-fill: white;
-    -fx-alignment: center;
-}
+ .textStyle{
+     -fx-text-fill: white;
+     -fx-alignment: center;
+ }
 
-.textStyleLeft{
-    -fx-text-fill: white;
-    -fx-alignment: left;
-}
+ .textStyleLeft{
+     -fx-text-fill: white;
+     -fx-alignment: left;
+ }
 
-.textStyleRight{
-    -fx-text-fill: white;
-    -fx-alignment: right;
-}
+ .textStyleRight{
+     -fx-text-fill: white;
+     -fx-alignment: right;
+ }
+
+ .icon{
+
+ }

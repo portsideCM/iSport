@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.weathericons.WeatherIconView?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" stylesheets="@HomeStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.jpg;">
          <children>
@@ -56,11 +58,12 @@
                      <children>
                         <Pane layoutX="58.0" layoutY="16.0" prefHeight="126.0" prefWidth="219.0" styleClass="fadePane">
                            <children>
-                              <Label id="MainTempLabel" layoutX="6.0" layoutY="3.0" styleClass="textStyle" text="##°">
+                              <Label id="MainTempLabel" layoutX="11.0" layoutY="3.0" styleClass="textStyle" text="##°">
                                  <font>
-                                    <Font name="Consolas Bold" size="105.0" />
+                                    <Font name="Consolas Bold" size="100.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="MainTempIcon" fill="WHITE" glyphName="DAY_CLOUDY" layoutX="144.0" layoutY="112.0" size="55" textAlignment="CENTER" wrappingWidth="62.984375" />
                            </children></Pane>
                      </children>
                   </Pane>
@@ -73,6 +76,7 @@
                                     <Font name="Consolas Bold" size="15.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="InfoIcon1" fill="WHITE" glyphName="DAY_CLOUDY" layoutY="34.0" size="35" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="85.0000011920929" />
                            </children></Pane>
                         <Pane layoutX="125.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
                            <children>
@@ -81,6 +85,7 @@
                                     <Font name="Consolas Bold" size="15.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="InfoIcon2" fill="WHITE" glyphName="DAY_CLOUDY" layoutY="34.0" size="35" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="85.0000011920929" />
                            </children></Pane>
                         <Pane layoutX="230.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
                            <children>
@@ -89,6 +94,7 @@
                                     <Font name="Consolas Bold" size="15.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="InfoIcon2" fill="WHITE" glyphName="DAY_CLOUDY" layoutY="34.0" size="35" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="85.0000011920929" />
                            </children></Pane>
                      </children>
                   </Pane>
@@ -96,55 +102,60 @@
                      <children>
                         <Pane layoutX="20.0" layoutY="10.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
                            <children>
-                              <Label id="Day1Label" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day1]">
+                              <Label id="DayLabel1" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day1]">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <Label id="Day1Label" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                              <Label id="DayLabel1" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="DayIcon1" fill="WHITE" glyphName="DAY_CLOUDY" layoutX="10.0" layoutY="23.0" size="25" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="39.000001430511475" />
                            </children></Pane>
                         <Pane layoutX="20.0" layoutY="66.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
                            <children>
-                              <Label id="Day2Label" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day2]">
+                              <Label id="DayLabel2" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day2]">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <Label id="Day1Label" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                              <Label id="DayLabel2" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="DayIcon2" fill="WHITE" glyphName="DAY_CLOUDY" layoutX="10.0" layoutY="23.0" size="25" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="39.000001430511475" />
                            </children></Pane>
                         <Pane layoutX="20.0" layoutY="124.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
                            <children>
-                              <Label id="Day3Label" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day3]">
+                              <Label id="DayLabel3" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day3]">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <Label id="Day1Label" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                              <Label id="DayLabel3" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
+                              <WeatherIconView id="DayIcon3" fill="WHITE" glyphName="DAY_CLOUDY" layoutX="10.0" layoutY="23.0" size="25" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="39.000001430511475" />
                            </children></Pane>
                         <Pane layoutX="20.0" layoutY="182.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
                            <children>
-                              <Label id="Day4Label" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day4]">
+                              <Label id="DayLabel4" layoutX="56.0" prefHeight="48.0" prefWidth="151.0" styleClass="textStyleLeft" text="[Day4]">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <Label id="Day1Label" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                              <Label id="DayLabel4" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
                                  <font>
                                     <Font name="Consolas Bold" size="22.0" />
+                                    
                                  </font>
                               </Label>
+                              <WeatherIconView id="DayIcon4" fill="WHITE" glyphName="DAY_CLOUDY" layoutX="10.0" layoutY="23.0" size="25" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="39.000001430511475" />
                            </children></Pane>
                      </children>
                   </Pane>
@@ -153,4 +164,9 @@
          </children>
       </Pane>
    </children>
+   <stylesheets>
+      <URL value="@HomeStyle.css" />
+      <URL value="@../../../.idea/Icons/css/weather-icons.css" />
+
+   </stylesheets>
 </AnchorPane>
