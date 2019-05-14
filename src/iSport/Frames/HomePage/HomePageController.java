@@ -37,13 +37,13 @@ public class HomePageController implements Initializable {
 
     @FXML
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
 
-        root.translateXProperty().set(0);
+        root.translateXProperty().set(-anchorHomePage.getWidth());
         masterContainer.getChildren().add(root);
 
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(e -> {

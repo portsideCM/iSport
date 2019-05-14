@@ -153,7 +153,7 @@
                         <Insets left="100.0" />
                      </VBox.margin>
                      <children>
-                        <Label prefHeight="44.0" prefWidth="100.0" styleClass="textStyle" text="Back">
+                        <Label fx:id="backLabel" prefHeight="44.0" prefWidth="100.0" styleClass="textStyle" text="Back">
                            <font>
                               <Font name="Consolas Bold" size="20.0" />
                            </font>
