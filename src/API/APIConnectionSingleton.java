@@ -160,6 +160,16 @@ public class APIConnectionSingleton {
         return null;
     }
 
+    public ArrayList<ForecastData> getForecast(String lon, String lat, boolean useHTTPS) throws IOException {
+        Map<String, String> params = new HashMap<>();
+        params.put("lon", lon); params.put("lat", lat);
+        URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
+        String result = getConnectionContents(apiURL);
+        Forecast f = extractForecastXMLData(result);
+        if(f != null) return f.ForecastList;
+        return null;
+    }
+
     public static APIConnectionSingleton getAPIConnection() {
         if(m_connection == null) {
             m_connection = new APIConnectionSingleton();
