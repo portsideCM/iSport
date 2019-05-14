@@ -1,6 +1,6 @@
 .fadePane {
-    -fx-background-color: rgba(175, 175,175,0.8);
-    -fx-background-radius: 18;
+    -fx-background-color: rgba(175, 175,175, 0.8);
+    -fx-background-radius: 15;
 }
 
  .burgerButton{
@@ -22,3 +22,4 @@
      -fx-text-fill: white;
      -fx-alignment: right;
  }
+

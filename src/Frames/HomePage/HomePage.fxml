@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import de.jensd.fx.glyphs.weathericons.WeatherIconView?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -37,7 +38,7 @@
                                  </font>
                               </Label>
                            </children></Pane>
-                        <Label id="TempUnitA" layoutX="283.0" layoutY="10.0" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="C°" textFill="#b2b2b2">
+                        <Label id="TempUnitA" layoutX="283.0" layoutY="10.0" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="C°" textFill="#f5f5f5">
                            <font>
                               <Font name="Consolas Bold" size="23.0" />
                            </font>
@@ -52,6 +53,7 @@
                               <Font name="Consolas Bold" size="18.0" />
                            </font>
                         </Label>
+                        <OctIconView fill="#d0d0d0" glyphName="THREE_BARS" layoutX="15.0" layoutY="37.0" size="35" />
                      </children>
                   </Pane>
                   <Pane prefHeight="161.0" prefWidth="335.0">
@@ -166,7 +168,6 @@
    </children>
    <stylesheets>
       <URL value="@HomeStyle.css" />
-      <URL value="@../../../.idea/Icons/css/weather-icons.css" />
 
    </stylesheets>
 </AnchorPane>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" stylesheets="@WeatherInfoStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.jpg;">
+            <children>
+                <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+                    <image>
+                        <Image url="@../../../.idea/Backgrounds/Running.png" />
+                    </image>
+                </ImageView>
+            <VBox prefHeight="600.0" prefWidth="335.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+               </padding>
+               <children>
+                  <Pane prefHeight="43.5" prefWidth="335.0" styleClass="fadePane">
+                     <children>
+                        <Label layoutX="1.0" prefHeight="44.0" prefWidth="305.0" styleClass="textStyle" text="Today's Weather Information" textAlignment="CENTER">
+                           <font>
+                              <Font name="Consolas Bold" size="18.5" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane layoutX="25.0" layoutY="15.0" prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Temperature">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="TemperatureInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Pressure">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="PressureInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Humidity">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="HumidityInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Wind">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="WindInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Cloud Cover">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="CloudCoverInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Precipitaion">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="PrecipitationInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Visibility">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="VisibilityInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Sunrise">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="SunriseInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="43.5" prefWidth="305.0" styleClass="fadePane">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="305.0" styleClass="textStyleLeft" text="  Sunset">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="SunsetInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Consolas Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane layoutX="117.5" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="100.0" styleClass="fadePane" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets left="100.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="100.0" styleClass="textStyle" text="Back">
+                           <font>
+                              <Font name="Consolas Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+               </children>
+            </VBox>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
