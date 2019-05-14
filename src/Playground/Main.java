@@ -1,4 +1,4 @@
-package Playground;
+package src.Playground;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
