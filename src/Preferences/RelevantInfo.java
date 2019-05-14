@@ -6,12 +6,16 @@ import java.util.*;
 
 public class RelevantInfo {
 
+
     public List<Param> getTop3 (List<Sport> interestSports) {
         Map<Param, Integer> paramScores = new HashMap<>();
 
         for (Sport s : interestSports) {
             List<Param> influenceParam = ImpactSport.getImpactParams(s);
             for (Param p : influenceParam) {
+
+                //add one score point for each mention of parameter p
+                //in the list of parameters that influence selected sports
                 if (paramScores.containsKey(p)) {
                     paramScores.put(p, paramScores.get(p) + 1);
                 }
