@@ -15,6 +15,7 @@ public class Main extends Application {
         Parent root =  loader.load();
         primaryStage.setTitle("iSports - Playground");
         primaryStage.setScene(new Scene(root, 335, 600));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
