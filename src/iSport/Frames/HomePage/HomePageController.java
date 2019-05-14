@@ -5,12 +5,12 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -36,7 +36,7 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    private void loadWeatherInfoPage(ActionEvent event) throws IOException {
+    private void loadWeatherInfoPage(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
 
         root.translateXProperty().set(0);
