@@ -5,6 +5,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,6 +108,19 @@ public class APIConnectionSingleton {
         return null;
     }
 
+    private static Forecast extractForecastXMLData(String xmlData) {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Forecast.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            Forecast forecastData = (Forecast) jaxbUnmarshaller.unmarshal(new StringReader(xmlData));
+            return forecastData;
+        }
+        catch(JAXBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * @param cityName API.City name to get weather from
      * @param useHTTPS Whether to use HTTPS or HTTP
@@ -134,6 +148,16 @@ public class APIConnectionSingleton {
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
         return extractCurrentWeatherXMLData(result);
+    }
+
+    public ArrayList<ForecastData> getForecast(String cityName, boolean useHTTPS) throws IOException {
+        Map<String, String> params = new HashMap<>();
+        params.put("q", cityName);
+        URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
+        String result = getConnectionContents(apiURL);
+        Forecast f = extractForecastXMLData(result);
+        if(f != null) return f.ForecastList;
+        return null;
     }
 
     public static APIConnectionSingleton getAPIConnection() {
