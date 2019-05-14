@@ -1,4 +1,4 @@
-package src.Playground;
+package src.iSport;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Playground.fxml"));
-        primaryStage.setTitle("iSports - Playground");
+        Parent root = FXMLLoader.load(getClass().getResource("Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
+        primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 335, 600));
         primaryStage.show();
     }
