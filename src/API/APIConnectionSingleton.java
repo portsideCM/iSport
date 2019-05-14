@@ -1,4 +1,4 @@
-package API;
+package src.API;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

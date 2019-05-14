@@ -1,4 +1,4 @@
-package API;
+package src.API;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
