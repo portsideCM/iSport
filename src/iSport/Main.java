@@ -10,7 +10,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("Frames/HomePage/HomePage.fxml"));
+        Parent root =  loader.load();
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 335, 600));
         primaryStage.show();

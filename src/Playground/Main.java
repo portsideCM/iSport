@@ -10,7 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Playground.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("Playground.fxml"));
+        Parent root =  loader.load();
         primaryStage.setTitle("iSports - Playground");
         primaryStage.setScene(new Scene(root, 335, 600));
         primaryStage.show();
