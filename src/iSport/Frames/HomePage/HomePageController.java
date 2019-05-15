@@ -55,13 +55,13 @@ public class HomePageController implements Initializable {
 
     @FXML
     private void switchTempUnit(MouseEvent event) {
-        if(celsiusLabel.getTextFill()==Color.WHITESMOKE) {
+        if(celsiusLabel.getTextFill()==Color.WHITESMOKE) { // Convert Celsius to Fahrenheit
             // TODO: change from C to F and display the new temperature values
             celsiusLabel.setTextFill(Color.web("#b2b2b2"));
             celsiusLabel.setFont(new Font("Consolas Bold",18));
             fahrenheitLabel.setTextFill(Color.WHITESMOKE);
             fahrenheitLabel.setFont(new Font("Consolas Bold",23));
-        } else {
+        } else { // Convert Fahrenheit to Celsius
             // TODO: change from F to C and display the new temperature values
             fahrenheitLabel.setTextFill(Color.web("#b2b2b2"));
             fahrenheitLabel.setFont(new Font("Consolas Bold",18));
