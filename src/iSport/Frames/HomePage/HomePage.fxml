@@ -17,7 +17,7 @@
           <children>
               <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.jpg;">
                   <children>
-                      <ImageView id="BG" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+                      <ImageView id="BG" fx:id="backgroundImageView" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                      <image>
                         <Image url="@../../../../.idea/Backgrounds/RUN.jpg" />
                      </image>
@@ -26,7 +26,7 @@
                           <children>
                               <Pane prefHeight="79.0" prefWidth="335.0">
                                   <children>
-                                      <Button fx:id="burgerButton" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="39.0" styleClass="burgerButton" />
+                                      <Button fx:id="burgerButton" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#loadSportPage" prefHeight="35.0" prefWidth="39.0" styleClass="burgerButton" />
                                       <Pane layoutX="100.0" layoutY="9.0" prefHeight="54.0" prefWidth="129.0" styleClass="fadePane">
                                           <children>
                                               <Label id="LocationLabel" fx:id="locationLabel" layoutY="6.0" prefHeight="23.0" prefWidth="129.0" styleClass="textStyle" text="[Location]">
@@ -56,9 +56,9 @@
                                               <Font name="Consolas Bold" size="18.0" />
                                           </font>
                                       </Label>
-                              <Pane layoutX="15.0" layoutY="13.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
-                              <Pane layoutX="15.0" layoutY="23.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
-                              <Pane layoutX="15.0" layoutY="33.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
+                              <Pane layoutX="15.0" layoutY="13.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
+                              <Pane layoutX="15.0" layoutY="23.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
+                              <Pane layoutX="15.0" layoutY="33.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
                                   </children>
                               </Pane>
                               <Pane prefHeight="161.0" prefWidth="335.0">

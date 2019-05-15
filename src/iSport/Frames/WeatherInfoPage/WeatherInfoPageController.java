@@ -61,7 +61,7 @@ public class WeatherInfoPageController implements Initializable {
 
         current.translateYProperty().set(0);
         StackPane masterContainer = (StackPane) scene.getRoot();
-        if (masterContainer.getChildren().contains(anchorHomePage))
+        if (!masterContainer.getChildren().contains(anchorHomePage))
             masterContainer.getChildren().add(0, anchorHomePage);
 
         Timeline timeline = new Timeline();

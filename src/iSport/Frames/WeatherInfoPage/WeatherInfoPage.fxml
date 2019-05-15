@@ -13,7 +13,7 @@
     <children>
         <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.png;">
             <children>
-                <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+                <ImageView fx:id="backgroundImageView" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                <image>
                   <Image url="@../../../../.idea/Backgrounds/RUN.jpg" />
                </image>

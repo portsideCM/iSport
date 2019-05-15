@@ -73,6 +73,21 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
+    private void loadSportPage(MouseEvent event) throws IOException {
+        Parent anchorSport = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/SportPage/SportPage.fxml"));
+        Scene scene = burgerButton.getScene();
+
+        anchorSport.translateXProperty().set(-scene.getWidth());
+        masterContainer.getChildren().add(anchorSport);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(anchorSport.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    @FXML
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
         Parent anchorWeatherInfo = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
         Scene scene = mainTempPane.getScene();
