@@ -1,7 +1,7 @@
-.fadePane {
+ .fadePane {
     -fx-background-color: rgba(175, 175,175,0.8);
     -fx-background-radius: 18;
-}
+ }
 
  .burgerButton{
      -fx-background-color: rgba(175, 175,175,0.8);
@@ -15,10 +15,10 @@
 
  .textStyleLeft{
      -fx-text-fill: white;
-     -fx-alignment: left;
+     -fx-alignment: center-left;
  }
 
  .textStyleRight{
      -fx-text-fill: white;
-     -fx-alignment: right;
+     -fx-alignment: center-right;
  }

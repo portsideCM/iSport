@@ -15,11 +15,11 @@
 
  .textStyleLeft{
      -fx-text-fill: white;
-     -fx-alignment: left;
+     -fx-alignment: center-left;
  }
 
  .textStyleRight{
      -fx-text-fill: white;
-     -fx-alignment: right;
+     -fx-alignment: center-right;
  }
 
