@@ -59,13 +59,13 @@ public class WeatherInfoPageController implements Initializable {
         Parent current = anchorWeatherInfo;
         Scene scene = backLabel.getScene();
 
-        current.translateXProperty().set(0);
+        current.translateYProperty().set(0);
         StackPane masterContainer = (StackPane) scene.getRoot();
         if (masterContainer.getChildren().contains(anchorHomePage))
             masterContainer.getChildren().add(0, anchorHomePage);
 
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(current.translateXProperty(), -scene.getWidth(), Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(current.translateYProperty(), scene.getHeight(), Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(e -> {

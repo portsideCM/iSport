@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -33,11 +34,13 @@ public class HomePageController implements Initializable {
     @FXML
     private Label fahrenheitLabel;
     @FXML
+    private Pane mainTempPane;
+    @FXML
+    private Label mainTempLabel;
+    @FXML
     private Label locationLabel;
     @FXML
     private Label timeLabel;
-    @FXML
-    private Label mainTempLabel;
     @FXML
     private Label info1Label;
     @FXML
@@ -72,13 +75,13 @@ public class HomePageController implements Initializable {
     @FXML
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
         Parent anchorWeatherInfo = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
-        Scene scene = burgerButton.getScene();
+        Scene scene = mainTempPane.getScene();
 
-        anchorWeatherInfo.translateXProperty().set(-scene.getWidth());
+        anchorWeatherInfo.translateYProperty().set(scene.getHeight());
         masterContainer.getChildren().add(anchorWeatherInfo);
 
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(anchorWeatherInfo.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(anchorWeatherInfo.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();
