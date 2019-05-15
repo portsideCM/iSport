@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" stylesheets="@WeatherInfoStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorWeatherInfo" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" stylesheets="@WeatherInfoStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.iSport.Frames.WeatherInfoPage.WeatherInfoPageController">
     <children>
-        <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.jpg;">
+        <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.png;">
             <children>
                 <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                <image>
@@ -38,7 +38,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="TemperatureInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="TemperatureInfo" fx:id="tempLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -51,7 +51,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="PressureInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="PressureInfo" fx:id="pressureLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -64,7 +64,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="HumidityInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="HumidityInfo" fx:id="humidityLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -77,7 +77,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="WindInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="WindInfo" fx:id="windLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -90,7 +90,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="CloudCoverInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="CloudCoverInfo" fx:id="cloudCoverLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -103,7 +103,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="PrecipitationInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="PrecipitationInfo" fx:id="precipitationLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -116,7 +116,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="VisibilityInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="VisibilityInfo" fx:id="visibilityLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -129,7 +129,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="SunriseInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="SunriseInfo" fx:id="sunriseLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -142,7 +142,7 @@
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label id="SunsetInfo" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
+                        <Label id="SunsetInfo" fx:id="sunsetLabel" alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="296.0" styleClass="textStyleRight" text="##" textAlignment="RIGHT">
                            <font>
                               <Font name="Consolas Bold" size="16.0" />
                            </font>
@@ -153,7 +153,7 @@
                         <Insets left="100.0" />
                      </VBox.margin>
                      <children>
-                        <Label prefHeight="44.0" prefWidth="100.0" styleClass="textStyle" text="Back">
+                        <Label fx:id="backLabel" onMouseClicked="#loadHomePage" prefHeight="44.0" prefWidth="100.0" styleClass="textStyle" text="Back">
                            <font>
                               <Font name="Consolas Bold" size="20.0" />
                            </font>

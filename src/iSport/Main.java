@@ -9,15 +9,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("Frames/HomePage/HomePage.fxml"));
-        Parent root =  loader.load();
-
-        Scene scene = new Scene(root, 335, 600);
-
-
-        primaryStage.setTitle("iSports");
-        primaryStage.setScene(scene);
+        Parent root = loader.load();
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 335, 600));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

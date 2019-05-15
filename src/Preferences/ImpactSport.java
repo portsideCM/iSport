@@ -6,9 +6,10 @@ import java.util.Map;
 
 class ImpactSport { //package visible
 
-    //a list of the most important parameters that impact each supported sport
+    //a list of the most important parameters for each supported sport
     private static Map<Sport, List<Param>> factors = null;
 
+    //important factors for each sport, as deduced from data gathering
     private static void loadFactors() {
         factors.put(Sport.RUNNING, new ArrayList<>(List.of(Param.RAIN, Param.WIND, Param.TEMPERATURE, Param.HUMIDITY)));
         factors.put(Sport.ROWING, new ArrayList<>(List.of(Param.WIND, Param.CLOUD, Param.VISIBILITY)));
