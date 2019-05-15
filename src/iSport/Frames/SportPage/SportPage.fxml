@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorWeatherInfo" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" stylesheets="@SportPage.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.iSport.Frames.WeatherInfoPage.WeatherInfoPageController">
+    <children>
+        <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.png;">
+            <children>
+                <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../../.idea/Backgrounds/SPORT_PAGE.jpg" />
+               </image>
+                </ImageView>
+                <VBox prefHeight="600.0" prefWidth="335.0" spacing="10.0">
+                    <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                    </padding>
+                    <children>
+                        <Pane prefHeight="43.5" prefWidth="335.0" styleClass="fadePane">
+                            <children>
+                                <Label layoutX="1.0" prefHeight="44.0" prefWidth="305.0" styleClass="textStyle" text="Sports Selection" textAlignment="CENTER">
+                                    <font>
+                                        <Font name="Consolas Bold" size="18.5" />
+                                    </font>
+                                </Label>
+                            </children></Pane>
+                  <HBox prefHeight="87.0" prefWidth="306.0" spacing="10.0">
+                     <children>
+                              <Pane fx:id="RugbyButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Rugby" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="62.0" fitWidth="69.0" layoutX="41.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Rugby.png" />
+                                 </image></ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="FootballButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Football" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="76.0" fitWidth="72.0" layoutX="42.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Football.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="25.0" layoutY="74.0" prefHeight="87.0" prefWidth="306.0" spacing="10.0">
+                     <children>
+                        <Pane fx:id="VolleyballButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Volleyball" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="43.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Volleyball.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="TennisButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Tennis" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="76.0" fitWidth="72.0" layoutX="38.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Tennis.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="25.0" layoutY="171.0" prefHeight="87.0" prefWidth="306.0" spacing="10.0">
+                     <children>
+                        <Pane fx:id="CricketButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Cricket" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="86.0" fitWidth="72.0" layoutX="37.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Cricket.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="CyclingButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Cycling" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="76.0" fitWidth="86.0" layoutX="31.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Cycle.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="25.0" layoutY="268.0" prefHeight="87.0" prefWidth="306.0" spacing="10.0">
+                     <children>
+                        <Pane fx:id="RunningButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Running" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="87.0" fitWidth="100.0" layoutX="27.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Run.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="RowingButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Rowing" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="87.0" fitWidth="72.0" layoutX="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Rowing.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="25.0" layoutY="365.0" prefHeight="87.0" prefWidth="306.0" spacing="10.0">
+                     <children>
+                        <Pane fx:id="HikingButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Hiking" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="72.0" fitWidth="57.0" layoutX="45.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Hiking.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="SailingButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="147.5" styleClass="fadePane">
+                           <children>
+                              <Label layoutY="48.0" prefHeight="44.0" prefWidth="148.0" styleClass="textStyle" text="Sailing" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="62.0" fitWidth="57.0" layoutX="45.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SportIcons/Sailing.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                        <Pane layoutX="117.5" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="100.0" styleClass="fadePane" VBox.vgrow="NEVER">
+                            <VBox.margin>
+                                <Insets left="100.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label fx:id="backLabel" onMouseClicked="#loadHomePage" prefHeight="44.0" prefWidth="100.0" styleClass="textStyle" text="Done">
+                                    <font>
+                                        <Font name="Consolas Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                            </children></Pane>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

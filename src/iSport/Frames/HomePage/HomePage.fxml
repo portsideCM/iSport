@@ -17,9 +17,9 @@
           <children>
               <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" style="-fx-background-image: .idea/Backgrounds/Running.jpg;">
                   <children>
-                      <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+                      <ImageView id="BG" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@../../../../.idea/Backgrounds/Running.png" />
+                        <Image url="@../../../../.idea/Backgrounds/RUN.jpg" />
                      </image>
                       </ImageView>
                       <VBox prefHeight="600.0" prefWidth="335.0">
@@ -56,6 +56,9 @@
                                               <Font name="Consolas Bold" size="18.0" />
                                           </font>
                                       </Label>
+                              <Pane layoutX="15.0" layoutY="13.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
+                              <Pane layoutX="15.0" layoutY="23.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
+                              <Pane layoutX="15.0" layoutY="33.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
                                   </children>
                               </Pane>
                               <Pane prefHeight="161.0" prefWidth="335.0">
@@ -67,6 +70,13 @@
                                                       <Font name="Consolas Bold" size="100.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="MainIcon" fitHeight="91.0" fitWidth="104.0" layoutX="129.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/CLOUD.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Pane layoutX="196.0" layoutY="7.0" prefHeight="24.0" prefWidth="5.0" style="-fx-background-color: white; -fx-background-radius: 15;" />
+                                    <Pane layoutX="186.0" layoutY="16.0" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: white; -fx-background-radius: 15;" />
                                           </children>
                               </Pane>
                                   </children>
@@ -80,6 +90,11 @@
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="InfoIcon1" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/WIND.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                       <Pane layoutX="125.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
@@ -89,6 +104,11 @@
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="InfoIcon2" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/WIND.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                       <Pane layoutX="230.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
@@ -98,6 +118,11 @@
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="InfoIcon3" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/WIND.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                   </children>
@@ -116,6 +141,11 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="DayIcon1" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/CLOUD.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                       <Pane layoutX="20.0" layoutY="66.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
@@ -130,6 +160,11 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="DayIcon2" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/CLOUD.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                       <Pane layoutX="20.0" layoutY="124.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
@@ -144,6 +179,11 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="DayIcon3" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/CLOUD.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                       <Pane layoutX="20.0" layoutY="182.0" prefHeight="48.0" prefWidth="295.0" styleClass="fadePane">
@@ -159,6 +199,11 @@
 
                                                   </font>
                                               </Label>
+                                    <ImageView fx:id="DayIcon4" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icons/CLOUD.png" />
+                                       </image>
+                                    </ImageView>
                                           </children>
                               </Pane>
                                   </children>

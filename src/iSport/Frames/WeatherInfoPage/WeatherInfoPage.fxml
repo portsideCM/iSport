@@ -15,7 +15,7 @@
             <children>
                 <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../../.idea/Backgrounds/Running.png" />
+                  <Image url="@../../../../.idea/Backgrounds/RUN.jpg" />
                </image>
                 </ImageView>
             <VBox prefHeight="600.0" prefWidth="335.0" spacing="10.0">
