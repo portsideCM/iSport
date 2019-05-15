@@ -18,9 +18,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import src.API.APIConnectionSingleton;
+import src.API.CurrentWeather;
+import src.API.ForecastData;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -64,12 +68,23 @@ public class HomePageController implements Initializable {
     @FXML
     private Label day4TempLabel;
 
+    private static final String cityName = "Cambridge,uk";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO: load weather information from the weather API
         //       Label variables have been provided above
         //       Use label.SetText()
+        try {
+            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
+            CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
+            List<ForecastData> forecast = conn.getForecast(cityName, true);
+            
+        }
+        catch(IOException e) {
+            // TODO: Have some nice error message b/c the API failed here
+            e.printStackTrace();
+        }
     }
 
     @FXML
