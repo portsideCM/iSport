@@ -23,6 +23,24 @@ import java.util.ResourceBundle;
 public class WeatherInfoPageController implements Initializable {
 
     @FXML
+    private Label tempLabel;
+    @FXML
+    private Label pressureLabel;
+    @FXML
+    private Label humidityLabel;
+    @FXML
+    private Label windLabel;
+    @FXML
+    private Label cloudCoverLabel;
+    @FXML
+    private Label precipitationLabel;
+    @FXML
+    private Label visibilityLabel;
+    @FXML
+    private Label sunriseLabel;
+    @FXML
+    private Label sunsetLabel;
+    @FXML
     private Label backLabel;
     @FXML
     private AnchorPane anchorWeatherInfo;
@@ -30,6 +48,8 @@ public class WeatherInfoPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO: load weather information from the weather API
+        //       Label variables have been provided above
+        //       Use label.SetText()
     }
 
     @FXML

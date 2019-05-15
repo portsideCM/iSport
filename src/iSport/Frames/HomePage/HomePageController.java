@@ -32,10 +32,41 @@ public class HomePageController implements Initializable {
     private Label celsiusLabel;
     @FXML
     private Label fahrenheitLabel;
+    @FXML
+    private Label locationLabel;
+    @FXML
+    private Label timeLabel;
+    @FXML
+    private Label mainTempLabel;
+    @FXML
+    private Label info1Label;
+    @FXML
+    private Label info2Label;
+    @FXML
+    private Label info3Label;
+    @FXML
+    private Label day1Label;
+    @FXML
+    private Label day2Label;
+    @FXML
+    private Label day3Label;
+    @FXML
+    private Label day4Label;
+    @FXML
+    private Label day1TempLabel;
+    @FXML
+    private Label day2TempLabel;
+    @FXML
+    private Label day3TempLabel;
+    @FXML
+    private Label day4TempLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO: load weather information from the weather API
+        //       Label variables have been provided above
+        //       Use label.SetText()
     }
 
     @FXML
