@@ -22,6 +22,8 @@ import src.API.ForecastData;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -62,12 +64,14 @@ public class WeatherInfoPageController implements Initializable {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather curr = conn.getCurrentWeather(cityName, true);
             List<ForecastData> forecast = conn.getForecast(cityName, true);
-            pressureLabel.setText(curr.Pressure);
-            humidityLabel.setText(curr.Humidity);
-            windLabel.setText(curr.WindSpeed);
-            cloudCoverLabel.setText(curr.CloudCover);
-            precipitationLabel.setText(curr.Rain1h);
-            visibilityLabel.setText(curr.Visibility);
+            pressureLabel.setText(Math.round(curr.Pressure));
+            humidityLabel.setText(Math.round(curr.Humidity));
+            windLabel.setText(Math.round(curr.WindSpeed));
+            cloudCoverLabel.setText(Math.round(curr.CloudCover));
+            precipitationLabel.setText(Math.round(curr.Rain1h));
+            visibilityLabel.setText(Math.round(curr.Visibility));
+            LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.of("GMT")));
+            
         }
         catch(IOException e) {
             // TODO: Have some nice error message b/c the API failed here
