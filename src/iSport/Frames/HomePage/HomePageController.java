@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -164,7 +166,8 @@ public class HomePageController implements Initializable {
 
     @FXML
     private void loadSportPage(MouseEvent event) throws IOException {
-        Parent anchorSport = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/SportPage/SportPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/SportPage/SportPage.fxml"));
+        Parent anchorSport = loader.load();
         Scene scene = burgerButton.getScene();
 
         anchorSport.translateXProperty().set(-scene.getWidth());
@@ -179,7 +182,8 @@ public class HomePageController implements Initializable {
 
     @FXML
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
-        Parent anchorWeatherInfo = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
+        Parent anchorWeatherInfo = loader.load();
         Scene scene = mainTempPane.getScene();
 
 

@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SportPageController implements Initializable {
 
@@ -51,24 +53,29 @@ public class SportPageController implements Initializable {
     @FXML
     private AnchorPane anchorSport;
 
+    private BackgroundFill selected = new BackgroundFill(Color.web("rgba(50,50,50,0.8)"), new CornerRadii(15), Insets.EMPTY);
+    private BackgroundFill notSelected = new BackgroundFill(Color.web("rgba(175,175,175,0.8)"), new CornerRadii(15), Insets.EMPTY);
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        runningPane.setBackground(new Background(selected)); // TODO: This doesn't work
     }
+
     @FXML
     private void selectSport(MouseEvent event) {
-
         Pane paneClicked = (Pane) event.getSource();
         if (paneClicked.getBackground().getFills().get(0).getFill().equals(Color.web("rgba(175,175,175,0.8)"))) // select a sport
-            paneClicked.setBackground(new Background(new BackgroundFill(Color.web("rgba(50,50,50,0.8)"), new CornerRadii(15), Insets.EMPTY)));
+            paneClicked.setBackground(new Background(selected));
         else // deselect a sport
-            paneClicked.setBackground(new Background(new BackgroundFill(Color.web("rgba(175,175,175,0.8)"), new CornerRadii(15), Insets.EMPTY)));
+            paneClicked.setBackground(new Background(notSelected));
     }
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
         // TODO: record which sports are selected and change the home page layout accordingly
 
-        Parent anchorHomePage = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml")); // currently anchorHomePage is the StackPane
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
+        Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane
         anchorHomePage = (Parent) ((StackPane) anchorHomePage).getChildren().get(0); // now anchorHomePage is the actual AnchorPane that we want
         Parent current = anchorSport;
         Scene scene = doneLabel.getScene();

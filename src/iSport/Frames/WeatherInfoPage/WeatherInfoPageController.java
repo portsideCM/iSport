@@ -86,7 +86,8 @@ public class WeatherInfoPageController implements Initializable {
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
-        Parent anchorHomePage = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml")); // currently anchorHomePage is the StackPane
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
+        Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane
         anchorHomePage = (Parent) ((StackPane) anchorHomePage).getChildren().get(0); // now anchorHomePage is the actual AnchorPane that we want
         Parent current = anchorWeatherInfo;
         Scene scene = backLabel.getScene();
