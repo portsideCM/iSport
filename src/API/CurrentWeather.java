@@ -17,6 +17,7 @@ public class CurrentWeather {
     public int WindDir;
     public int CloudCover;
     public int Visibility;
+    public int WeatherId;
     public String WeatherType;
     public String Description;
 

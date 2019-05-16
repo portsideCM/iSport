@@ -107,6 +107,7 @@ public class APIConnectionSingleton {
             JSONArray weatherArray = json.getJSONArray("weather");
             result.WeatherType = weatherArray.getJSONObject(0).getString("main");
             result.Description = weatherArray.getJSONObject(0).getString("description");
+            result.WeatherId = weatherArray.getJSONObject(0).getInt("id");
         }
         if(json.has("main")){
             JSONObject main = json.getJSONObject("main");
@@ -160,6 +161,7 @@ public class APIConnectionSingleton {
                 JSONArray weather = currWeatherData.getJSONArray("weather");
                 temp.WeatherDescription = weather.getJSONObject(0).getString("description");
                 temp.WeatherType = weather.getJSONObject(0).getString("main");
+                temp.WeatherId = weather.getJSONObject(0).getInt("id");
             }
             if(currWeatherData.has("clouds")) {
                 JSONObject clouds = currWeatherData.getJSONObject("clouds");
