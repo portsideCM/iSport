@@ -17,9 +17,9 @@
           <children>
               <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
                   <children>
-                      <ImageView id="BG" fx:id="background" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+                      <ImageView id="BG" fx:id="backgroundHome" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@../../../../.idea/Backgrounds/SAILING.jpg" />
+                        <Image url="@../../../../.idea/Backgrounds/HIKING.jpg" />
                      </image>
                       </ImageView>
                       <VBox prefHeight="600.0" prefWidth="335.0">

@@ -66,6 +66,7 @@ public class WeatherInfoPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        //Sets background image
         background.setImage(bg.getBestBackground());
 
         try {
@@ -84,6 +85,8 @@ public class WeatherInfoPageController implements Initializable {
             // Have some nice error message b/c the API failed here
             e.printStackTrace();
         }
+
+
     }
 
     @FXML
@@ -93,6 +96,7 @@ public class WeatherInfoPageController implements Initializable {
         anchorHomePage = (Parent) ((StackPane) anchorHomePage).getChildren().get(0); // now anchorHomePage is the actual AnchorPane that we want
         Parent current = anchorWeatherInfo;
         Scene scene = backLabel.getScene();
+
 
         current.translateYProperty().set(0);
         StackPane masterContainer = (StackPane) scene.getRoot();
@@ -107,5 +111,6 @@ public class WeatherInfoPageController implements Initializable {
             masterContainer.getChildren().remove(anchorWeatherInfo);
         });
         timeline.play();
+
     }
 }

@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -29,6 +30,7 @@ import src.Images.Icons;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
@@ -36,7 +38,7 @@ import java.util.ResourceBundle;
 public class HomePageController implements Initializable {
 
     @FXML
-    private ImageView background;
+    private ImageView backgroundHome;
     @FXML
     private ImageView dayIcon1;
     @FXML
@@ -100,13 +102,23 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        background.setImage(bg.getBestBackground());
+
+        //updates Display
+        Image backgroundImage = bg.getBestBackground();
+        backgroundHome.setImage(backgroundImage);
+
+
+        //Sets location and date
+        locationLabel.setText("Cambridge");
+        timeLabel.setText(LocalDate.now().toString());
+
 
         //Loads weather info and displays it
         try {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
             Forecast forecast = conn.getForecast(cityName, true);
+
 
             //Sets main weather info
             if (tempUnit == "C") {
@@ -122,6 +134,8 @@ public class HomePageController implements Initializable {
             String tempMin1 = String.valueOf(Math.round(convert(day1.TempMin, day1)));
             String tempMax1 = String.valueOf(Math.round(convert(day1.TempMax, day1)));
             day1TempLabel.setText(tempMin1 + "°-" + tempMax1 + "°");
+            day1Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(1).getDayOfWeek()));
+
 
             //Set day 2 weather info
             ForecastData day2 = forecast.nextDayWeather(LocalDate.now(), 2, ZoneId.of("GMT"));
@@ -129,6 +143,7 @@ public class HomePageController implements Initializable {
             String tempMin2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
             String tempMax2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
             day2TempLabel.setText(tempMin2 + "°-" + tempMax2 + "°");
+            day2Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(2).getDayOfWeek()));
 
             //Set day 3 weather info
             ForecastData day3 = forecast.nextDayWeather(LocalDate.now(), 3, ZoneId.of("GMT"));
@@ -136,6 +151,7 @@ public class HomePageController implements Initializable {
             String tempMin3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
             String tempMax3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
             day3TempLabel.setText(tempMin3 + "°-" + tempMax3 + "°");
+            day3Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(3).getDayOfWeek()));
 
             //Set day 4 weather info
             ForecastData day4 = forecast.nextDayWeather(LocalDate.now(), 4, ZoneId.of("GMT"));
@@ -143,12 +159,14 @@ public class HomePageController implements Initializable {
             String tempMin4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
             String tempMax4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
             day4TempLabel.setText(tempMin4 + "°-" + tempMax4 + "°");
+            day4Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(4).getDayOfWeek()));
 
         } catch (IOException e) {
             // Have some nice error message b/c the API failed here
             System.out.println("ERROR ON LOADING WEATHER");
             e.printStackTrace();
         }
+
 
     }
 
@@ -211,5 +229,13 @@ public class HomePageController implements Initializable {
         } else {
             return FD.getTempInFarenheit(T);
         }
+    }
+
+    //Formats day of the week
+    private String dayOfWeekAsString(DayOfWeek day){
+        String dayString = String.valueOf(day);
+        String a = dayString.substring(0,1);
+        String b = dayString.substring(1).toLowerCase();
+        return a+b;
     }
 }

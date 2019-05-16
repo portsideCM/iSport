@@ -16,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import src.Preferences.Sport;
+import src.Preferences.SportList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,41 +51,59 @@ public class SportPageController implements Initializable {
     @FXML
     private AnchorPane anchorSport;
 
-//    private final Map<Pane, Sport> paneToSportMap = new HashMap<>(Map.of(
-//            rugbyPane, Sport.RUGBY,
-//            footballPane, Sport.FOOTBALL,
-//            volleyballPane, Sport.VOLLEYBALL,
-//            tennisPane, Sport.TENNIS,
-//            cricketPane, Sport.CRICKET,
-//            cyclingPane, Sport.CYCLING,
-//            runningPane, Sport.RUNNING,
-//            rowingPane, Sport.ROWING,
-//            hikingPane, Sport.HIKING,
-//            sailingPane, Sport.SAILING
-//    ));
-//
-//    private final List<Pane> sportPanes = new ArrayList<>(paneToSportMap.keySet());
+    private Map<Pane, Sport> paneToSportMap;
+
+    private List<Pane> sportPanes;
 
     private final Background selected = new Background(new BackgroundFill(Color.web("rgba(50,50,50,0.8)"), new CornerRadii(15), Insets.EMPTY));
     private final Background notSelected = new Background(new BackgroundFill(Color.web("rgba(175,175,175,0.8)"), new CornerRadii(15), Insets.EMPTY));
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        rowingPane.setBackground(selected);
+
+        //Adds pane to sport mapping and all sports a panes to a map and list
+        //Must be done here as panes are created on initialize
+        paneToSportMap = new HashMap<>(Map.of(
+                rugbyPane, Sport.RUGBY,
+                footballPane, Sport.FOOTBALL,
+                volleyballPane, Sport.VOLLEYBALL,
+                tennisPane, Sport.TENNIS,
+                cricketPane, Sport.CRICKET,
+                cyclingPane, Sport.CYCLING,
+                runningPane, Sport.RUNNING,
+                rowingPane, Sport.ROWING,
+                hikingPane, Sport.HIKING,
+                sailingPane, Sport.SAILING
+        ));
+        sportPanes = new ArrayList<>(paneToSportMap.keySet());
+
+        //Highlights selected sports
+        List<Sport> selectedSports = SportList.get();
+        for (Pane sportP : sportPanes){
+            if (selectedSports.contains(paneToSportMap.get(sportP))){
+                sportP.setStyle("-fx-background-color: rgba(50, 50, 50, 0.8);");
+            }
+        }
+
     }
 
     @FXML
     private void selectSport(MouseEvent event) {
         Pane paneClicked = (Pane) event.getSource();
-        if (paneClicked.getBackground().getFills().get(0).getFill().equals(notSelected.getFills().get(0).getFill())) // select a sport
+        if (paneClicked.getBackground().getFills().get(0).getFill().equals(notSelected.getFills().get(0).getFill())) { // select a sport
             paneClicked.setBackground(selected);
-        else // deselect a sport
+            SportList.add(paneToSportMap.get(paneClicked));
+        } else { // deselect a sport
             paneClicked.setBackground(notSelected);
+            SportList.remove(paneToSportMap.get(paneClicked));
+        }
     }
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
         // TODO: record which sports are selected and change the home page layout accordingly
+
+
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
         Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane
