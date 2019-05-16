@@ -19,10 +19,13 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import src.API.APIConnectionSingleton;
 import src.API.CurrentWeather;
+import src.API.Forecast;
+import src.API.ForecastData;
 import src.Images.Backgrounds;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -53,11 +56,28 @@ public class WeatherInfoPageController implements Initializable {
     @FXML
     private AnchorPane anchorWeatherInfo;
 
+    private static final String cityName = "Cambridge,uk";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO: load weather information from the weather API
         //       Label variables have been provided above
         //       Use label.SetText()
+        try {
+            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
+            CurrentWeather curr = conn.getCurrentWeather(cityName, true);
+            List<ForecastData> forecast = conn.getForecast(cityName, true);
+            pressureLabel.setText(curr.Pressure);
+            humidityLabel.setText(curr.Humidity);
+            windLabel.setText(curr.WindSpeed);
+            cloudCoverLabel.setText(curr.CloudCover);
+            precipitationLabel.setText(curr.Rain1h);
+            visibilityLabel.setText(curr.Visibility);
+        }
+        catch(IOException e) {
+            // TODO: Have some nice error message b/c the API failed here
+            e.printStackTrace();
+        }
     }
 
     @FXML
