@@ -5,6 +5,8 @@ import java.time.Instant;
 public class ForecastData {
     public Instant Time;
     public double Temp;
+    public double TempMin;
+    public double TempMax;
     public String TempUnit;
     public double Pressure;
     public double Humidity;

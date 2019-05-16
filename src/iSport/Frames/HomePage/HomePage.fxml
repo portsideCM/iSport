@@ -73,7 +73,7 @@
                                                       <Font name="Consolas Bold" size="100.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="MainIcon" fitHeight="91.0" fitWidth="104.0" layoutX="129.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="mainTempIcon" fitHeight="91.0" fitWidth="104.0" layoutX="129.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/CLOUD.png" />
                                        </image>
@@ -139,7 +139,7 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel1" fx:id="day1TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel1" fx:id="day1TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
@@ -158,7 +158,7 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel2" fx:id="day2TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel2" fx:id="day2TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
@@ -177,7 +177,7 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel3" fx:id="day3TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel3" fx:id="day3TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
@@ -196,7 +196,7 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel4" fx:id="day4TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel4" fx:id="day4TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
 

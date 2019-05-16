@@ -150,6 +150,8 @@ public class APIConnectionSingleton {
                 temp.Temp = main.getDouble("temp");
                 temp.Pressure = main.getDouble("pressure");
                 temp.Humidity = main.getDouble("humidity");
+                temp.TempMin = main.getDouble("temp_min");
+                temp.TempMax = main.getDouble("temp_max");
             }
             if(currWeatherData.has("weather")){
                 JSONArray weather = currWeatherData.getJSONArray("weather");
@@ -191,6 +193,9 @@ public class APIConnectionSingleton {
         String result = getConnectionContents(apiURL);
         return extractCurrentWeatherData(result);
     }
+
+
+
 
     /**
      * @param lon Longitude to query

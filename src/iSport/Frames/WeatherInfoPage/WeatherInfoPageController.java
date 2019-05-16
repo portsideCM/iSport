@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -69,18 +68,15 @@ public class WeatherInfoPageController implements Initializable {
         try {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather curr = conn.getCurrentWeather(cityName, true);
-            List<ForecastData> forecast = conn.getForecast(cityName, true);
-            pressureLabel.setText(Math.round(curr.Pressure));
-            humidityLabel.setText(Math.round(curr.Humidity));
-            windLabel.setText(Math.round(curr.WindSpeed));
-            cloudCoverLabel.setText(Math.round(curr.CloudCover));
-            precipitationLabel.setText(Math.round(curr.Rain1h));
-            visibilityLabel.setText(Math.round(curr.Visibility));
-            DateTimeFormatter sunTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            Forecast forecast = conn.getForecast(cityName, true);
+            pressureLabel.setText(String.valueOf(Math.round(curr.Pressure)));
+            humidityLabel.setText(String.valueOf(Math.round(curr.Humidity)));
+            windLabel.setText(String.valueOf(Math.round(curr.WindSpeed)));
+            cloudCoverLabel.setText(String.valueOf(Math.round(curr.CloudCover)));
+            precipitationLabel.setText(String.valueOf(Math.round(curr.Rain1h)));
+            visibilityLabel.setText(String.valueOf(Math.round(curr.Visibility)));
             LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.of("GMT")));
-            LocalTime localSunSet = LocalTime.from(curr.Sunset.atZone(ZoneId.of("GMT")));
-            sunriseLabel.setText(localSunRise.format(sunTimeFormatter));
-            sunsetLabel.setText(localSunSet.format(sunTimeFormatter));
+
         }
         catch(IOException e) {
             // TODO: Have some nice error message b/c the API failed here

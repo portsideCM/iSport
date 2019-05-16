@@ -26,4 +26,22 @@ public class Icons {
         TEMP_IC = new Image(".idea/Icons/TEMP.png");
         WIND_IC = new Image(".idea/Icons/WIND.png");
     }
+
+    public Image iconCalc(int ID){
+        //Rain
+        if (ID > 100 && ID < 650){
+            return RAIN_IC;
+        }
+        //Sun
+        if (ID == 800){
+            return SUN_IC;
+        }
+        //Partly Cloudy
+        if (ID == 801 || ID == 802 ){
+           return SUN_CLOUD_IC;
+        }
+
+        //All else return cloudy
+        return CLOUD_IC;
+    }
 }
