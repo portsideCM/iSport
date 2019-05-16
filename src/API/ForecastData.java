@@ -14,6 +14,7 @@ public class ForecastData {
     public double Rain3h;
     public double WindSpeed;
     public double WindDir;
+    public int WeatherId;
 
     public double getTempInCelsius(double tmp) {
         if(TempUnit.equals("celsius")) {

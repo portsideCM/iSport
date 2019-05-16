@@ -11,12 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class APIConnectionSingleton {
-    public static void main(String[] args) throws IOException {
-        APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
-        CurrentWeather c = conn.getCurrentWeather("Cambridge,uk", true);
-        ArrayList<ForecastData> f = conn.getForecast("Cambridge,uk", true);
-        System.out.println(c.Temp);
-    }
     //HTTP or HTTPS
     public enum Protocol {
         HTTP("http"), HTTPS("https");
@@ -107,6 +101,7 @@ public class APIConnectionSingleton {
             JSONArray weatherArray = json.getJSONArray("weather");
             result.WeatherType = weatherArray.getJSONObject(0).getString("main");
             result.Description = weatherArray.getJSONObject(0).getString("description");
+            result.WeatherId = weatherArray.getJSONObject(0).getInt("id");
         }
         if(json.has("main")){
             JSONObject main = json.getJSONObject("main");
@@ -160,6 +155,7 @@ public class APIConnectionSingleton {
                 JSONArray weather = currWeatherData.getJSONArray("weather");
                 temp.WeatherDescription = weather.getJSONObject(0).getString("description");
                 temp.WeatherType = weather.getJSONObject(0).getString("main");
+                temp.WeatherId = weather.getJSONObject(0).getInt("id");
             }
             if(currWeatherData.has("clouds")) {
                 JSONObject clouds = currWeatherData.getJSONObject("clouds");
@@ -211,23 +207,23 @@ public class APIConnectionSingleton {
         return extractCurrentWeatherData(result);
     }
 
-    public ArrayList<ForecastData> getForecast(String cityName, boolean useHTTPS) throws IOException {
+    public Forecast getForecast(String cityName, boolean useHTTPS) throws IOException {
         Map<String, String> params = new HashMap<>();
         params.put("q", cityName);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
         String result = getConnectionContents(apiURL);
         Forecast f = extractForecastXMLData(result);
-        if(f != null) return f.ForecastList;
+        if(f != null) return f;
         return null;
     }
 
-    public ArrayList<ForecastData> getForecast(String lon, String lat, boolean useHTTPS) throws IOException {
+    public Forecast getForecast(String lon, String lat, boolean useHTTPS) throws IOException {
         Map<String, String> params = new HashMap<>();
         params.put("lon", lon); params.put("lat", lat);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
         String result = getConnectionContents(apiURL);
         Forecast f = extractForecastXMLData(result);
-        if(f != null) return f.ForecastList;
+        if(f != null) return f;
         return null;
     }
 
