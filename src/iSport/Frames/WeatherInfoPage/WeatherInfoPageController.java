@@ -52,21 +52,22 @@ public class WeatherInfoPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO: load weather information from the weather API
-        //       Label variables have been provided above
-        //       Use label.SetText()
-        try {
-
-        }
-        catch(IOException e) {
-            // TODO: Have some nice error message b/c the API failed here
-            e.printStackTrace();
-        }
+//        // TODO: load weather information from the weather API
+//        //       Label variables have been provided above
+//        //       Use label.SetText()
+//        try {
+//
+//        }
+//        catch(IOException e) {
+//            // TODO: Have some nice error message b/c the API failed here
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
-        Parent anchorHomePage = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml")); // currently anchorHomePage is the StackPane
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
+        Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane
         anchorHomePage = (Parent) ((StackPane) anchorHomePage).getChildren().get(0); // now anchorHomePage is the actual AnchorPane that we want
         Parent current = anchorWeatherInfo;
         Scene scene = backLabel.getScene();
