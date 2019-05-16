@@ -11,16 +11,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import src.Images.Backgrounds;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WeatherInfoPageController implements Initializable {
+    @FXML
+    private ImageView background;
 
     @FXML
     private Label tempLabel;
@@ -45,8 +50,15 @@ public class WeatherInfoPageController implements Initializable {
     @FXML
     private AnchorPane anchorWeatherInfo;
 
+    //Loads up all background images
+    private Backgrounds bg = new Backgrounds();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        background.setImage(bg.SAILING_BG);
+
+
         // TODO: load weather information from the weather API
         //       Label variables have been provided above
         //       Use label.SetText()

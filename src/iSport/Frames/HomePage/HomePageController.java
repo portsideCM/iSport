@@ -12,7 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -21,6 +24,8 @@ import javafx.util.Duration;
 import src.API.APIConnectionSingleton;
 import src.API.CurrentWeather;
 import src.API.ForecastData;
+import src.Images.Backgrounds;
+import src.Images.Icons;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +34,16 @@ import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
 
+    @FXML
+    private ImageView background;
+    @FXML
+    private ImageView dayIcon1;
+    @FXML
+    private ImageView dayIcon2;
+    @FXML
+    private ImageView dayIcon3;
+    @FXML
+    private ImageView dayIcon4;
     @FXML
     private Button burgerButton;
     @FXML
@@ -68,23 +83,31 @@ public class HomePageController implements Initializable {
     @FXML
     private Label day4TempLabel;
 
+    //Loads up all background images
+    private Backgrounds bg = new Backgrounds();
+    //Load up all weather icons
+    private Icons ic = new Icons();
+
     private static final String cityName = "Cambridge,uk";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO: load weather information from the weather API
-        //       Label variables have been provided above
-        //       Use label.SetText()
-        try {
-            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
-            CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
-            List<ForecastData> forecast = conn.getForecast(cityName, true);
-            
-        }
-        catch(IOException e) {
-            // TODO: Have some nice error message b/c the API failed here
-            e.printStackTrace();
-        }
+
+        background.setImage(bg.SAILING_BG);
+
+//        // TODO: load weather information from the weather API
+//        //       Label variables have been provided above
+//        //       Use label.SetText()
+//        try {
+//            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
+//            CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
+//            List<ForecastData> forecast = conn.getForecast(cityName, true);
+//
+//        }
+//        catch(IOException e) {
+//            // TODO: Have some nice error message b/c the API failed here
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
@@ -106,6 +129,8 @@ public class HomePageController implements Initializable {
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
         Parent anchorWeatherInfo = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
         Scene scene = mainTempPane.getScene();
+
+
 
         anchorWeatherInfo.translateYProperty().set(scene.getHeight());
         masterContainer.getChildren().add(anchorWeatherInfo);
