@@ -1,24 +1,49 @@
 package src.API;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.time.Instant;
+import java.util.Date;
 
-@XmlRootElement(name = "current")
 public class CurrentWeather {
-    @XmlElement(name = "city")
-    public City CityInfo;
-    @XmlElement(name = "clouds")
-    public Cloud CloudInfo;
-    @XmlElement(name = "humidity")
-    public Humidity HumidityInfo;
-    @XmlElement(name = "pressure")
-    public Pressure PressureInfo;
-    @XmlElement(name = "precipitation")
-    public Rain RainInfo;
-    @XmlElement(name = "temperature")
-    public Temp TempInfo;
-    @XmlElement(name = "weather")
-    public Weather WeatherInfo;
-    @XmlElement(name = "wind")
-    public Wind WindInfo;
+    public Instant CalcTime;
+    public Instant Sunrise;
+    public Instant Sunset;
+    public double Temp;
+    public String TempUnit;
+    public double Pressure;
+    public double Humidity;
+    public double WindSpeed;
+    public double Rain1h;
+    public double Rain3h;
+    public int WindDir;
+    public int CloudCover;
+    public int Visibility;
+    public int WeatherId;
+    public String WeatherType;
+    public String Description;
+
+    public double getTempInCelsius(double tmp) {
+        if(TempUnit.equals("celsius")) {
+            return tmp;
+        }
+        else if(TempUnit.equals("fahrenheit")) {
+            return (tmp - 32) / 1.8;
+        }
+        else {
+            // Kelvin stuff
+            return (tmp - 273.15);
+        }
+    }
+
+    public double getTempInFarenheit(double tmp) {
+        if(TempUnit.equals("celsius")) {
+            return (tmp * 1.8) + 32;
+        }
+        else if(TempUnit.equals("fahrenheit")) {
+            return tmp;
+        }
+        else {
+            //More Kelvin
+            return (tmp - 273.15) * 1.8 + 32;
+        }
+    }
 }

@@ -11,16 +11,29 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import src.API.APIConnectionSingleton;
+import src.API.CurrentWeather;
+import src.API.Forecast;
+import src.API.ForecastData;
+import src.Images.Backgrounds;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class WeatherInfoPageController implements Initializable {
+    @FXML
+    private ImageView background;
 
     @FXML
     private Label tempLabel;
@@ -45,16 +58,32 @@ public class WeatherInfoPageController implements Initializable {
     @FXML
     private AnchorPane anchorWeatherInfo;
 
+    private static final String cityName = "Cambridge,uk";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO: load weather information from the weather API
-        //       Label variables have been provided above
-        //       Use label.SetText()
+        try {
+            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
+            CurrentWeather curr = conn.getCurrentWeather(cityName, true);
+            Forecast forecast = conn.getForecast(cityName, true);
+            pressureLabel.setText(String.valueOf(Math.round(curr.Pressure)));
+            humidityLabel.setText(String.valueOf(Math.round(curr.Humidity)));
+            windLabel.setText(String.valueOf(Math.round(curr.WindSpeed)));
+            cloudCoverLabel.setText(String.valueOf(Math.round(curr.CloudCover)));
+            precipitationLabel.setText(String.valueOf(Math.round(curr.Rain1h)));
+            visibilityLabel.setText(String.valueOf(Math.round(curr.Visibility)));
+            LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.of("GMT")));
+        }
+        catch(IOException e) {
+            // Have some nice error message b/c the API failed here
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
-        Parent anchorHomePage = FXMLLoader.load(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml")); // currently anchorHomePage is the StackPane
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
+        Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane
         anchorHomePage = (Parent) ((StackPane) anchorHomePage).getChildren().get(0); // now anchorHomePage is the actual AnchorPane that we want
         Parent current = anchorWeatherInfo;
         Scene scene = backLabel.getScene();

@@ -17,9 +17,9 @@
           <children>
               <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
                   <children>
-                      <ImageView id="BG" fx:id="backgroundImageView" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
+                      <ImageView id="BG" fx:id="background" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@../../../../.idea/Backgrounds/RUN.jpg" />
+                        <Image url="@../../../../.idea/Backgrounds/SAILING.jpg" />
                      </image>
                       </ImageView>
                       <VBox prefHeight="600.0" prefWidth="335.0">
@@ -41,24 +41,27 @@
                                               </Label>
                                           </children>
                               </Pane>
-                                      <Label id="TempUnitA" fx:id="celsiusLabel" layoutX="271.0" layoutY="11.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="°C" textFill="#f5f5f5">
-                                          <font>
-                                              <Font name="Consolas Bold" size="23.0" />
-                                          </font>
-                                      </Label>
-                                      <Label fx:id="slashLabel" layoutX="298.0" layoutY="11.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="/" textFill="#b2b2b2">
-                                          <font>
-                                              <Font name="Consolas Bold" size="20.0" />
-                                          </font>
-                                      </Label>
-                                      <Label id="TempUnitB" fx:id="fahrenheitLabel" layoutX="309.0" layoutY="11.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="°F" textFill="#b2b2b2">
-                                          <font>
-                                              <Font name="Consolas Bold" size="18.0" />
-                                          </font>
-                                      </Label>
                               <Pane layoutX="15.0" layoutY="13.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
                               <Pane layoutX="15.0" layoutY="23.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
                               <Pane layoutX="15.0" layoutY="33.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
+                              <Pane layoutX="262.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" styleClass="fadePane">
+                                 <children>
+                                            <Label id="TempUnitA" fx:id="celsiusLabel" layoutX="4.0" layoutY="4.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" style="-fx-alignment: center-right;" text="°C" textFill="WHITE">
+                                                <font>
+                                                    <Font name="Consolas Bold" size="23.0" />
+                                                </font>
+                                            </Label>
+                                            <Label fx:id="slashLabel" layoutX="29.0" layoutY="4.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="/" textFill="#f5f5f5">
+                                                <font>
+                                                    <Font name="Consolas Bold" size="20.0" />
+                                                </font>
+                                            </Label>
+                                            <Label id="TempUnitB" fx:id="fahrenheitLabel" layoutX="38.0" layoutY="4.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="°F" textFill="#b2b2b2">
+                                                <font>
+                                                    <Font name="Consolas Bold" size="18.0" />
+                                                </font>
+                                            </Label>
+                                 </children></Pane>
                                   </children>
                               </Pane>
                               <Pane prefHeight="161.0" prefWidth="335.0">
@@ -70,7 +73,7 @@
                                                       <Font name="Consolas Bold" size="100.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="MainIcon" fitHeight="91.0" fitWidth="104.0" layoutX="129.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="mainTempIcon" fitHeight="91.0" fitWidth="104.0" layoutX="129.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/CLOUD.png" />
                                        </image>
@@ -136,12 +139,12 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel1" fx:id="day1TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel1" fx:id="day1TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="DayIcon1" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="dayIcon1" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/CLOUD.png" />
                                        </image>
@@ -155,12 +158,12 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel2" fx:id="day2TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel2" fx:id="day2TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="DayIcon2" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="dayIcon2" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/CLOUD.png" />
                                        </image>
@@ -174,12 +177,12 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel3" fx:id="day3TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel3" fx:id="day3TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="DayIcon3" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="dayIcon3" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/CLOUD.png" />
                                        </image>
@@ -193,13 +196,13 @@
                                                       <Font name="Consolas Bold" size="22.0" />
                                                   </font>
                                               </Label>
-                                              <Label id="DayLabel4" fx:id="day4TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleLeft" text="##°-##°">
+                                              <Label id="DayLabel4" fx:id="day4TempLabel" alignment="CENTER_RIGHT" layoutX="159.0" prefHeight="48.0" prefWidth="129.0" styleClass="textStyleRight" text="##°-##°">
                                                   <font>
                                                       <Font name="Consolas Bold" size="22.0" />
 
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="DayIcon4" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="dayIcon4" fitHeight="61.0" fitWidth="50.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/CLOUD.png" />
                                        </image>
