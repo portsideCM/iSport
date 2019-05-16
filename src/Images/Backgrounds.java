@@ -38,7 +38,6 @@ public class Backgrounds {
     public Image getBestBackground(){
 
 
-        SportList.add(Sport.VOLLEYBALL);
 
         List<Sport> options = SportList.get();
 
