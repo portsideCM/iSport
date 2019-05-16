@@ -62,9 +62,6 @@ public class WeatherInfoPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO: load weather information from the weather API
-        //       Label variables have been provided above
-        //       Use label.SetText()
         try {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather curr = conn.getCurrentWeather(cityName, true);
@@ -76,10 +73,9 @@ public class WeatherInfoPageController implements Initializable {
             precipitationLabel.setText(String.valueOf(Math.round(curr.Rain1h)));
             visibilityLabel.setText(String.valueOf(Math.round(curr.Visibility)));
             LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.of("GMT")));
-
         }
         catch(IOException e) {
-            // TODO: Have some nice error message b/c the API failed here
+            // Have some nice error message b/c the API failed here
             e.printStackTrace();
         }
     }

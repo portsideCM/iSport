@@ -1,6 +1,6 @@
 package src.Preferences;
 
 //all weather params covered in our app
-enum Param {
+public enum Param {
     VOID, CLOUD, HUMIDITY, PRESSURE, RAIN, SUN, TEMPERATURE, VISIBILITY, WIND
 }

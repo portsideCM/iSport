@@ -8,18 +8,14 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -35,9 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 
 public class HomePageController implements Initializable {
 
@@ -102,66 +96,57 @@ public class HomePageController implements Initializable {
     // C for celsius, F for fahrenheit
     private String tempUnit = "C";
 
-
     //Called when page is loaded
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        background.setImage(bg.SAILING_BG);
 
-            background.setImage(bg.SAILING_BG);
+        //Loads weather info and displays it
+        try {
+            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
+            CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
+            Forecast forecast = conn.getForecast(cityName, true);
 
-
-            //Loads weather info and displays it
-            try {
-                APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
-                CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
-                Forecast forecast = conn.getForecast(cityName, true);
-
-
-                //Sets main weather info
-                if (tempUnit == "C") {
-                    mainTempLabel.setText(String.valueOf(Math.round(currentWeather.getTempInCelsius(currentWeather.Temp))) + "°");
-                } else {
-                    mainTempLabel.setText(String.valueOf(Math.round(currentWeather.getTempInFarenheit(currentWeather.Temp))) + "°");
-                }
-                mainTempIcon.setImage(ic.iconCalc(currentWeather.WeatherId));
-
-
-                //Set day 1 weather info
-                ForecastData day1 = forecast.nextDayWeather(LocalDate.now(), 1, ZoneId.of("GMT"));
-                dayIcon1.setImage(ic.iconCalc(day1.WeatherId));
-                String tempMin1 = String.valueOf(Math.round(convert(day1.TempMin, day1)));
-                String tempMax1 = String.valueOf(Math.round(convert(day1.TempMax, day1))) ;
-                day1TempLabel.setText(tempMin1 + "°-" + tempMax1 + "°");
-
-
-                //Set day 2 weather info
-                ForecastData day2 = forecast.nextDayWeather(LocalDate.now(), 2, ZoneId.of("GMT"));
-                dayIcon2.setImage(ic.iconCalc(day2.WeatherId));
-                String tempMin2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
-                String tempMax2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
-                day2TempLabel.setText(tempMin2 + "°-" + tempMax2 + "°");
-
-                //Set day 3 weather info
-                ForecastData day3 = forecast.nextDayWeather(LocalDate.now(), 3, ZoneId.of("GMT"));
-                dayIcon3.setImage(ic.iconCalc(day3.WeatherId));
-                String tempMin3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
-                String tempMax3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
-                day3TempLabel.setText(tempMin3 + "°-" + tempMax3 + "°");
-
-                //Set day 4 weather info
-                ForecastData day4 = forecast.nextDayWeather(LocalDate.now(), 4, ZoneId.of("GMT"));
-                dayIcon4.setImage(ic.iconCalc(day4.WeatherId));
-                String tempMin4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
-                String tempMax4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
-                day4TempLabel.setText(tempMin4 + "°-" + tempMax4 + "°");
-
+            //Sets main weather info
+            if (tempUnit == "C") {
+                mainTempLabel.setText(Math.round(currentWeather.getTempInCelsius(currentWeather.Temp)) + "°");
+            } else {
+                mainTempLabel.setText(Math.round(currentWeather.getTempInFarenheit(currentWeather.Temp)) + "°");
             }
-            catch(IOException e) {
-                // TODO: Have some nice error message b/c the API failed here
-                e.printStackTrace();
-            }
+            mainTempIcon.setImage(ic.iconCalc(currentWeather.WeatherId));
 
+            //Set day 1 weather info
+            ForecastData day1 = forecast.nextDayWeather(LocalDate.now(), 1, ZoneId.of("GMT"));
+            dayIcon1.setImage(ic.iconCalc(day1.WeatherId));
+            String tempMin1 = String.valueOf(Math.round(convert(day1.TempMin, day1)));
+            String tempMax1 = String.valueOf(Math.round(convert(day1.TempMax, day1)));
+            day1TempLabel.setText(tempMin1 + "°-" + tempMax1 + "°");
 
+            //Set day 2 weather info
+            ForecastData day2 = forecast.nextDayWeather(LocalDate.now(), 2, ZoneId.of("GMT"));
+            dayIcon2.setImage(ic.iconCalc(day2.WeatherId));
+            String tempMin2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
+            String tempMax2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
+            day2TempLabel.setText(tempMin2 + "°-" + tempMax2 + "°");
+
+            //Set day 3 weather info
+            ForecastData day3 = forecast.nextDayWeather(LocalDate.now(), 3, ZoneId.of("GMT"));
+            dayIcon3.setImage(ic.iconCalc(day3.WeatherId));
+            String tempMin3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
+            String tempMax3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
+            day3TempLabel.setText(tempMin3 + "°-" + tempMax3 + "°");
+
+            //Set day 4 weather info
+            ForecastData day4 = forecast.nextDayWeather(LocalDate.now(), 4, ZoneId.of("GMT"));
+            dayIcon4.setImage(ic.iconCalc(day4.WeatherId));
+            String tempMin4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
+            String tempMax4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
+            day4TempLabel.setText(tempMin4 + "°-" + tempMax4 + "°");
+
+        } catch (IOException e) {
+            // Have some nice error message b/c the API failed here
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -186,8 +171,6 @@ public class HomePageController implements Initializable {
         Parent anchorWeatherInfo = loader.load();
         Scene scene = mainTempPane.getScene();
 
-
-
         anchorWeatherInfo.translateYProperty().set(scene.getHeight());
         masterContainer.getChildren().add(anchorWeatherInfo);
 
@@ -200,33 +183,27 @@ public class HomePageController implements Initializable {
 
     @FXML
     private void switchTempUnit(MouseEvent event) throws MalformedURLException {
-        if(celsiusLabel.getTextFill()==Color.WHITESMOKE) { // Convert Celsius to Fahrenheit
-
-
+        if (celsiusLabel.getTextFill() == Color.WHITESMOKE) { // Convert Celsius to Fahrenheit
             tempUnit = "F";
-
             celsiusLabel.setTextFill(Color.web("#b2b2b2"));
-            celsiusLabel.setFont(new Font("Consolas Bold",18));
+            celsiusLabel.setFont(new Font("Consolas Bold", 18));
             fahrenheitLabel.setTextFill(Color.WHITESMOKE);
-            fahrenheitLabel.setFont(new Font("Consolas Bold",23));
+            fahrenheitLabel.setFont(new Font("Consolas Bold", 23));
         } else { // Convert Fahrenheit to Celsius
-
             tempUnit = "C";
-
             fahrenheitLabel.setTextFill(Color.web("#b2b2b2"));
-            fahrenheitLabel.setFont(new Font("Consolas Bold",18));
+            fahrenheitLabel.setFont(new Font("Consolas Bold", 18));
             celsiusLabel.setTextFill(Color.WHITESMOKE);
-            celsiusLabel.setFont(new Font("Consolas Bold",23));
+            celsiusLabel.setFont(new Font("Consolas Bold", 23));
         }
 
         //updates Display
         initialize(new URL("file:/C:/Users/Taylor/Documents/Cambridge/iSport/out/production/iSport/src/iSport/Frames/HomePage/HomePage.fxml"), null);
-
     }
 
     //Decides what unit to display the temp in
-    public double convert(double T, ForecastData FD){
-        if (tempUnit == "C"){
+    private double convert(double T, ForecastData FD) {
+        if (tempUnit.equals("C")) {
             return FD.getTempInCelsius(T);
         } else {
             return FD.getTempInFarenheit(T);
