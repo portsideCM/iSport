@@ -198,7 +198,7 @@ public class HomePageController implements Initializable {
         }
 
         //updates Display
-        initialize(new URL("file:/C:/Users/Taylor/Documents/Cambridge/iSport/out/production/iSport/src/iSport/Frames/HomePage/HomePage.fxml"), null);
+        initialize(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"), null);
     }
 
     //Decides what unit to display the temp in
