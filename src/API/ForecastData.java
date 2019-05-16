@@ -1,36 +1,43 @@
 package src.API;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
+import java.time.Instant;
 
-@XmlRootElement(name = "time")
 public class ForecastData {
-    @XmlAttribute(name = "from")
-    public Date From;
+    public Instant Time;
+    public double Temp;
+    public String TempUnit;
+    public double Pressure;
+    public double Humidity;
+    public String WeatherDescription;
+    public String WeatherType;
+    public double Clouds;
+    public double Rain3h;
+    public double WindSpeed;
+    public double WindDir;
 
-    @XmlAttribute(name = "to")
-    public Date To;
+    public double getTempInCelsius(double tmp) {
+        if(TempUnit.equals("celsius")) {
+            return tmp;
+        }
+        else if(TempUnit.equals("fahrenheit")) {
+            return (tmp - 32) / 1.8;
+        }
+        else {
+            // Kelvin stuff
+            return (tmp - 273.15);
+        }
+    }
 
-    @XmlElement(name = "precipitation")
-    public Rain Rain;
-
-    @XmlElement(name = "windDirection")
-    public WindDirection WindDir;
-
-    @XmlElement(name = "windSpeed")
-    public WindSpeed WindVel;
-
-    @XmlElement(name = "temperature")
-    public Temp Temperature;
-
-    @XmlElement(name = "pressure")
-    public Pressure Pressure;
-
-    @XmlElement(name = "humidity")
-    public Humidity Humidity;
-
-    @XmlElement(name = "clouds")
-    public Cloud Clouds;
+    public double getTempInFarenheit(double tmp) {
+        if(TempUnit.equals("celsius")) {
+            return (tmp * 1.8) + 32;
+        }
+        else if(TempUnit.equals("fahrenheit")) {
+            return tmp;
+        }
+        else {
+            //More Kelvin
+            return (tmp - 273.15) * 1.8 + 32;
+        }
+    }
 }

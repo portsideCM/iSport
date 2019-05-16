@@ -20,7 +20,6 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import src.API.APIConnectionSingleton;
 import src.API.CurrentWeather;
-import src.API.ForecastData;
 
 import java.io.IOException;
 import java.net.URL;
@@ -76,10 +75,8 @@ public class HomePageController implements Initializable {
         //       Label variables have been provided above
         //       Use label.SetText()
         try {
-            APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
-            CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
-            List<ForecastData> forecast = conn.getForecast(cityName, true);
-            
+
+
         }
         catch(IOException e) {
             // TODO: Have some nice error message b/c the API failed here

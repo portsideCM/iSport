@@ -15,9 +15,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import src.API.APIConnectionSingleton;
+import src.API.CurrentWeather;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class WeatherInfoPageController implements Initializable {
@@ -45,11 +48,20 @@ public class WeatherInfoPageController implements Initializable {
     @FXML
     private AnchorPane anchorWeatherInfo;
 
+    private static final String cityName = "Cambridge,uk";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO: load weather information from the weather API
         //       Label variables have been provided above
         //       Use label.SetText()
+        try {
+
+        }
+        catch(IOException e) {
+            // TODO: Have some nice error message b/c the API failed here
+            e.printStackTrace();
+        }
     }
 
     @FXML

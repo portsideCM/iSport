@@ -1,15 +1,22 @@
 package src.API;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class APIConnectionSingleton {
+    public static void main(String[] args) throws IOException {
+        APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
+        CurrentWeather c = conn.getCurrentWeather("Cambridge,uk", true);
+        ArrayList<ForecastData> f = conn.getForecast("Cambridge,uk", true);
+        System.out.println(c.Temp);
+    }
     //HTTP or HTTPS
     public enum Protocol {
         HTTP("http"), HTTPS("https");
@@ -60,8 +67,6 @@ public class APIConnectionSingleton {
             }
             filePathBuilder.append("APPID=" + m_apikey);
 
-            filePathBuilder.append("&mode=xml");
-
             return new URL(p.getValue(), m_apiHost, filePathBuilder.toString());
         }
         catch(UnsupportedEncodingException | MalformedURLException e) {
@@ -95,30 +100,86 @@ public class APIConnectionSingleton {
      * @param xmlData XML form in the structure of OpenWeatherMaps current weather API
      * @return API.CurrentWeather object with the same data as the passed in XML
      */
-    private static CurrentWeather extractCurrentWeatherXMLData(String xmlData) {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(CurrentWeather.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            CurrentWeather currentWeather = (CurrentWeather) jaxbUnmarshaller.unmarshal(new StringReader(xmlData));
-            return currentWeather;
+    private static CurrentWeather extractCurrentWeatherData(String xmlData) {
+        CurrentWeather result = new CurrentWeather();
+        JSONObject json = new JSONObject(xmlData);
+        if(json.has("weather")) {
+            JSONArray weatherArray = json.getJSONArray("weather");
+            result.WeatherType = weatherArray.getJSONObject(0).getString("main");
+            result.Description = weatherArray.getJSONObject(0).getString("description");
         }
-        catch (JAXBException e) {
-            e.printStackTrace();
+        if(json.has("main")){
+            JSONObject main = json.getJSONObject("main");
+            result.Temp = main.getDouble("temp");
+            result.Pressure = main.getDouble("pressure");
+            result.Humidity = main.getDouble("humidity");
         }
-        return null;
+        if(json.has("wind")) {
+            JSONObject wind = json.getJSONObject("wind");
+            result.WindSpeed = wind.getDouble("speed");
+            result.WindDir = wind.getInt("deg");
+        }
+        if(json.has("clouds")) {
+            JSONObject clouds = json.getJSONObject("clouds");
+            result.CloudCover = clouds.getInt("all");
+        }
+        if(json.has("sys")) {
+            JSONObject sys = json.getJSONObject("sys");
+            result.Sunrise = Instant.ofEpochSecond(sys.getLong("sunrise"));
+            result.Sunset = Instant.ofEpochSecond(sys.getLong("sunset"));
+        }
+        if(json.has("rain")) {
+            JSONObject rain = json.getJSONObject("rain");
+            if(rain.has("1h")) result.Rain1h = rain.getDouble("1h");
+            if(rain.has("3h")) result.Rain3h = rain.getDouble("3h");
+        }
+        if(json.has("dt")) result.CalcTime = Instant.ofEpochSecond(json.getLong("dt"));
+        result.Visibility = json.getInt("visibility");
+
+        result.TempUnit = "kelvin";
+        return result;
     }
 
     private static Forecast extractForecastXMLData(String xmlData) {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Forecast.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Forecast forecastData = (Forecast) jaxbUnmarshaller.unmarshal(new StringReader(xmlData));
-            return forecastData;
+        JSONObject json = new JSONObject(xmlData);
+        Forecast result = new Forecast();
+        JSONArray weatherList = json.getJSONArray("list");
+        result.ForecastList = new ArrayList<>();
+        for(int i = 0; i < weatherList.length(); ++i) {
+            JSONObject currWeatherData = weatherList.getJSONObject(i);
+            ForecastData temp = new ForecastData();
+
+            if(currWeatherData.has("main")) {
+                JSONObject main = currWeatherData.getJSONObject("main");
+                temp.TempUnit = "kelvin";
+                temp.Temp = main.getDouble("temp");
+                temp.Pressure = main.getDouble("pressure");
+                temp.Humidity = main.getDouble("humidity");
+            }
+            if(currWeatherData.has("weather")){
+                JSONArray weather = currWeatherData.getJSONArray("weather");
+                temp.WeatherDescription = weather.getJSONObject(0).getString("description");
+                temp.WeatherType = weather.getJSONObject(0).getString("main");
+            }
+            if(currWeatherData.has("clouds")) {
+                JSONObject clouds = currWeatherData.getJSONObject("clouds");
+                temp.Clouds = clouds.getDouble("all");
+            }
+            if(currWeatherData.has("wind")) {
+                JSONObject wind = currWeatherData.getJSONObject("wind");
+                temp.WindSpeed = wind.getDouble("speed");
+                temp.WindDir = wind.getInt("deg");
+            }
+            if(currWeatherData.has("rain")) {
+                JSONObject rain = currWeatherData.getJSONObject("rain");
+                if(rain.has("3h")) temp.Rain3h = rain.getDouble("3h");
+            }
+            if(currWeatherData.has("dt")) {
+                temp.Time = Instant.ofEpochSecond(currWeatherData.getLong("dt"));
+            }
+            result.ForecastList.add(temp);
         }
-        catch(JAXBException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return result;
     }
 
     /**
@@ -132,7 +193,7 @@ public class APIConnectionSingleton {
         params.put("q", cityName);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
-        return extractCurrentWeatherXMLData(result);
+        return extractCurrentWeatherData(result);
     }
 
     /**
@@ -147,7 +208,7 @@ public class APIConnectionSingleton {
         params.put("lon", lon); params.put("lat", lat);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
-        return extractCurrentWeatherXMLData(result);
+        return extractCurrentWeatherData(result);
     }
 
     public ArrayList<ForecastData> getForecast(String cityName, boolean useHTTPS) throws IOException {
