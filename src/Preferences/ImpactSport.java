@@ -24,6 +24,8 @@ class ImpactSport { //package visible
     }
 
     static List<Param> getImpactParams(Sport s) { //package visible
+
+        //perform lazy instantiation, such that we only load factors once
         if (factors == null) {
             ImpactSport.loadFactors();
         }
