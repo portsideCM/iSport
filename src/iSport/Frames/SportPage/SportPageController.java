@@ -50,20 +50,20 @@ public class SportPageController implements Initializable {
     @FXML
     private AnchorPane anchorSport;
 
-    private final Map<Pane, Sport> paneToSportMap = new HashMap<>(Map.of(
-            rugbyPane, Sport.RUGBY,
-            footballPane, Sport.FOOTBALL,
-            volleyballPane, Sport.VOLLEYBALL,
-            tennisPane, Sport.TENNIS,
-            cricketPane, Sport.CRICKET,
-            cyclingPane, Sport.CYCLING,
-            runningPane, Sport.RUNNING,
-            rowingPane, Sport.ROWING,
-            hikingPane, Sport.HIKING,
-            sailingPane, Sport.SAILING
-    ));
-
-    private final List<Pane> sportPanes = new ArrayList<>(paneToSportMap.keySet());
+//    private final Map<Pane, Sport> paneToSportMap = new HashMap<>(Map.of(
+//            rugbyPane, Sport.RUGBY,
+//            footballPane, Sport.FOOTBALL,
+//            volleyballPane, Sport.VOLLEYBALL,
+//            tennisPane, Sport.TENNIS,
+//            cricketPane, Sport.CRICKET,
+//            cyclingPane, Sport.CYCLING,
+//            runningPane, Sport.RUNNING,
+//            rowingPane, Sport.ROWING,
+//            hikingPane, Sport.HIKING,
+//            sailingPane, Sport.SAILING
+//    ));
+//
+//    private final List<Pane> sportPanes = new ArrayList<>(paneToSportMap.keySet());
 
     private final Background selected = new Background(new BackgroundFill(Color.web("rgba(50,50,50,0.8)"), new CornerRadii(15), Insets.EMPTY));
     private final Background notSelected = new Background(new BackgroundFill(Color.web("rgba(175,175,175,0.8)"), new CornerRadii(15), Insets.EMPTY));
@@ -76,7 +76,7 @@ public class SportPageController implements Initializable {
     @FXML
     private void selectSport(MouseEvent event) {
         Pane paneClicked = (Pane) event.getSource();
-        if (paneClicked.getBackground().getFills().get(0).getFill().equals(selected.getFills().get(0).getFill())) // select a sport
+        if (paneClicked.getBackground().getFills().get(0).getFill().equals(notSelected.getFills().get(0).getFill())) // select a sport
             paneClicked.setBackground(selected);
         else // deselect a sport
             paneClicked.setBackground(notSelected);

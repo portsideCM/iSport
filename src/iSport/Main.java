@@ -14,7 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Preference sportPreference = new Preference(List.of(Sport.RUNNING));
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("Frames/HomePage/HomePage.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("iSports");
