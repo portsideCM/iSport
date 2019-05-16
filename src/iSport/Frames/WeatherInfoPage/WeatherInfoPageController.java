@@ -60,8 +60,14 @@ public class WeatherInfoPageController implements Initializable {
 
     private static final String cityName = "Cambridge,uk";
 
+    //Loads up all background images
+    private Backgrounds bg = new Backgrounds();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        background.setImage(bg.getBestBackground());
+
         try {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather curr = conn.getCurrentWeather(cityName, true);

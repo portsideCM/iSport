@@ -99,7 +99,8 @@ public class HomePageController implements Initializable {
     //Called when page is loaded
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        background.setImage(bg.SAILING_BG);
+
+        background.setImage(bg.getBestBackground());
 
         //Loads weather info and displays it
         try {
@@ -145,8 +146,10 @@ public class HomePageController implements Initializable {
 
         } catch (IOException e) {
             // Have some nice error message b/c the API failed here
+            System.out.println("ERROR ON LOADING WEATHER");
             e.printStackTrace();
         }
+
     }
 
     @FXML

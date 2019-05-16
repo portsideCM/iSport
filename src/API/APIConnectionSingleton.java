@@ -129,9 +129,10 @@ public class APIConnectionSingleton {
             if(rain.has("3h")) result.Rain3h = rain.getDouble("3h");
         }
         if(json.has("dt")) result.CalcTime = Instant.ofEpochSecond(json.getLong("dt"));
-        result.Visibility = json.getInt("visibility");
+       // result.Visibility = json.getInt("visibility");
 
         result.TempUnit = "kelvin";
+
         return result;
     }
 
