@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static src.iSport.Frames.LockOut.refreshNeeded;
+
 public class SportPageController {
 
     @FXML
@@ -96,6 +98,7 @@ public class SportPageController {
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
+        refreshNeeded = true;
 
         // record which sports are selected
         paneToSportMap = new HashMap<>(Map.of(
@@ -136,5 +139,7 @@ public class SportPageController {
             masterContainer.getChildren().remove(anchorSport);
         });
         timeline.play();
+
+        refreshNeeded = true;
     }
 }

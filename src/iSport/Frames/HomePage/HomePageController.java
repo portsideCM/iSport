@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static src.iSport.Frames.LockOut.refreshNeeded;
 import static src.iSport.Main.refreshListenerAdded;
 
 public class HomePageController {
@@ -120,15 +121,19 @@ public class HomePageController {
     // Called when page is loaded
     @FXML
     public void initialize() {
+        if (!refreshNeeded) {
+            return;
+        }
+
         // Creates a map from params to icons
         Map<Param, Image> paramIconMap = new HashMap<>(Map.of(
                 Param.CLOUD, ic.CLOUD_IC,
                 Param.HUMIDITY, ic.HUMID_IC,
-                Param.PRESSURE, ic.PRESSURE_IC, // TODO: Pressure icon is not designed yet
+                Param.PRESSURE, ic.PRESSURE_IC,
                 Param.RAIN, ic.RAINDROPS_IC,
                 Param.SUN, ic.SUN_IC,
                 Param.TEMPERATURE, ic.TEMP_IC,
-                Param.VISIBILITY, ic.VISIBILITY_IC, // TODO: Visibility icon is not designed yet
+                Param.VISIBILITY, ic.VISIBILITY_IC,
                 Param.WIND, ic.WIND_IC
         ));
 
@@ -147,7 +152,7 @@ public class HomePageController {
             Forecast forecast = conn.getForecast(cityName, true);
 
             // Sets main weather info
-            if (tempUnit == "C") {
+            if (tempUnit.equals("C")) {
                 mainTempLabel.setText(Math.round(currentWeather.getTempInCelsius(currentWeather.Temp)) + "°");
             } else {
                 mainTempLabel.setText(Math.round(currentWeather.getTempInFarenheit(currentWeather.Temp)) + "°");
@@ -210,12 +215,14 @@ public class HomePageController {
             refreshListenerAdded = true;
             anchorHomePage.hoverProperty().addListener(observable -> this.initialize());
         }
+
+        refreshNeeded = false;
     }
 
     @FXML
     private void loadSportPage(MouseEvent event) throws IOException {
         // Stops other transitions occurring at the same time
-        if (LockOut.isLocked()){
+        if (LockOut.isLocked()) {
             return;
         }
         LockOut.lock();
@@ -237,7 +244,7 @@ public class HomePageController {
     @FXML
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
         // Stops other transitions occurring at the same time
-        if (LockOut.isLocked()){
+        if (LockOut.isLocked()) {
             return;
         }
         LockOut.lock();
@@ -255,7 +262,6 @@ public class HomePageController {
         timeline.getKeyFrames().add(kf);
 
         timeline.play();
-
     }
 
     @FXML
@@ -275,6 +281,7 @@ public class HomePageController {
         }
 
         //updates Display
+        refreshNeeded = true;
         this.initialize();
     }
 

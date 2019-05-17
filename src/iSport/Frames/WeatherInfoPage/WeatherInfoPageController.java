@@ -28,6 +28,8 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import static src.iSport.Frames.LockOut.*;
+
 public class WeatherInfoPageController {
     @FXML
     private ImageView background;
@@ -75,14 +77,13 @@ public class WeatherInfoPageController {
             humidityLabel.setText(Math.round(currentWeather.Humidity) + "%");
             windLabel.setText(HomePageController.windAsString(currentWeather.WindSpeed, currentWeather.WindDir));
             cloudCoverLabel.setText(currentWeather.CloudCover + "%");
-            precipitationLabel.setText(currentWeather.Rain1h +" mm");
+            precipitationLabel.setText(currentWeather.Rain1h + " mm");
             visibilityLabel.setText(currentWeather.Visibility + " m");
             LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.systemDefault()));
             sunriseLabel.setText(localSunRise.format(DateTimeFormatter.ofPattern("HH:mm")));
             LocalTime localSunSet = LocalTime.from(currentWeather.Sunset.atZone(ZoneId.systemDefault()));
             sunsetLabel.setText(localSunSet.format(DateTimeFormatter.ofPattern("HH:mm")));
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             // Have some nice error message b/c the API failed here
             e.printStackTrace();
         }
@@ -90,6 +91,8 @@ public class WeatherInfoPageController {
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
+        refreshNeeded = true;
+
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
         Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane
         anchorHomePage = (Parent) ((StackPane) anchorHomePage).getChildren().get(0); // now anchorHomePage is the actual AnchorPane that we want
@@ -109,5 +112,7 @@ public class WeatherInfoPageController {
             masterContainer.getChildren().remove(anchorWeatherInfo);
         });
         timeline.play();
+
+        refreshNeeded = true;
     }
 }

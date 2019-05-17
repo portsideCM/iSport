@@ -8,7 +8,7 @@ public class RelevantInfo {
 
     //compute the most important 3 parameters. based on the impact factors
     //takes as argument the current selection of sports
-    public static List<Param> computeTop3 (List<Sport> interestSports) {
+    public static List<Param> computeTop3(List<Sport> interestSports) {
         Map<Param, Integer> paramScores = new HashMap<>();
 
         for (Sport s : interestSports) {
@@ -17,11 +17,10 @@ public class RelevantInfo {
 
                 //add one score point for each mention of parameter p
                 //in the list of parameters that influence selected sports
-                // TODO: Are all those factors have equal weight, or the order does matter?
                 if (paramScores.containsKey(p)) {
-                    paramScores.put(p, paramScores.get(p) + 1);
-                }
-                else {
+                    int newCount = paramScores.get(p) + 1;
+                    paramScores.put(p, newCount);
+                } else {
                     paramScores.put(p, 1);
                 }
             }
@@ -40,13 +39,11 @@ public class RelevantInfo {
                 max3 = max2;
                 max2 = max1;
                 max1 = p;
-            }
-            else {
+            } else {
                 if (paramScores.get(p) >= paramScores.get(max2)) {
                     max3 = max2;
                     max2 = p;
-                }
-                else {
+                } else {
                     if (paramScores.get(p) >= paramScores.get(max3)) {
                         max3 = p;
                     }

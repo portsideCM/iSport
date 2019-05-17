@@ -13,7 +13,7 @@
 
 <StackPane fx:id="masterContainer" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.iSport.Frames.HomePage.HomePageController">
    <children>
-      <AnchorPane fx:id="anchorHomePage" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" onMouseMoved="#initialize" prefHeight="600.0" prefWidth="335.0">
+      <AnchorPane fx:id="anchorHomePage" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
           <children>
               <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
                   <children>
@@ -95,7 +95,7 @@
                                               </Label>
                                     <ImageView fx:id="info1Icon" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../.idea/Icons/WIND.png" />
+                                          <Image url="@../../../../.idea/Icons/RAIN.png" />
                                        </image>
                                     </ImageView>
                                           </children>
@@ -123,7 +123,7 @@
                                               </Label>
                                     <ImageView fx:id="info3Icon" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../.idea/Icons/VISIBILITY.png" />
+                                          <Image url="@../../../../.idea/Icons/HUMID.png" />
                                        </image>
                                     </ImageView>
                                           </children>
