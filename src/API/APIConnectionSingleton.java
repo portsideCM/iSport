@@ -199,7 +199,9 @@ public class APIConnectionSingleton {
         params.put("q", cityName);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
-        return extractCurrentWeatherData(result);
+        CurrentWeather curr = extractCurrentWeatherData(result);
+        if(curr != null) m_currentWeather = curr;
+        return curr;
     }
 
 
@@ -219,7 +221,9 @@ public class APIConnectionSingleton {
         params.put("lat", lat);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
-        return extractCurrentWeatherData(result);
+        CurrentWeather curr = extractCurrentWeatherData(result);
+        if(curr != null) m_currentWeather = curr;
+        return curr;
     }
 
     public Forecast getForecast(String cityName, boolean useHTTPS) throws IOException {
@@ -231,7 +235,10 @@ public class APIConnectionSingleton {
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
         String result = getConnectionContents(apiURL);
         Forecast f = extractForecastXMLData(result);
-        if (f != null) return f;
+        if (f != null) {
+            m_currentForecast = f;
+            return f;
+        }
         return null;
     }
 
@@ -245,7 +252,10 @@ public class APIConnectionSingleton {
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
         String result = getConnectionContents(apiURL);
         Forecast f = extractForecastXMLData(result);
-        if (f != null) return f;
+        if (f != null) {
+            m_currentForecast = f;
+            return f;
+        }
         return null;
     }
 
