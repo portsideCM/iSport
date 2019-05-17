@@ -28,6 +28,9 @@ public class APIConnectionSingleton {
 
     private static APIConnectionSingleton m_connection;
 
+    private static CurrentWeather m_currentWeather;
+    private static Forecast m_currentForecast;
+
     //Secret key
     private static final String m_apikey = "11ca36974caa7e63998abae6cee9a5e1";
     //Start of every api call
@@ -189,6 +192,9 @@ public class APIConnectionSingleton {
      * @throws IOException If the city name is invalid or the connection to the API server fails
      */
     public CurrentWeather getCurrentWeather(String cityName, boolean useHTTPS) throws IOException {
+        if(m_currentWeather.CalcTime.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+            return m_currentWeather;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("q", cityName);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
@@ -205,6 +211,9 @@ public class APIConnectionSingleton {
      * @throws IOException If the location is invalid or the connection to the API server fails
      */
     public CurrentWeather getCurrentWeather(String lon, String lat, boolean useHTTPS) throws IOException {
+        if(m_currentWeather.CalcTime.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+            return m_currentWeather;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("lon", lon);
         params.put("lat", lat);
@@ -214,6 +223,9 @@ public class APIConnectionSingleton {
     }
 
     public Forecast getForecast(String cityName, boolean useHTTPS) throws IOException {
+        if(m_currentForecast.ForecastList.get(0).Time.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+            return m_currentForecast;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("q", cityName);
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "forecast", params);
@@ -224,6 +236,9 @@ public class APIConnectionSingleton {
     }
 
     public Forecast getForecast(String lon, String lat, boolean useHTTPS) throws IOException {
+        if(m_currentForecast.ForecastList.get(0).Time.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+            return m_currentForecast;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("lon", lon);
         params.put("lat", lat);
