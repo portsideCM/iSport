@@ -96,6 +96,7 @@ public class SportPageController {
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
+
         // record which sports are selected
         paneToSportMap = new HashMap<>(Map.of(
                 rugbyPane, Sport.RUGBY,

@@ -30,6 +30,7 @@ import src.Preferences.Param;
 import src.Preferences.RelevantInfo;
 import src.Preferences.Sport;
 import src.Preferences.SportList;
+import src.iSport.Frames.LockOut;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -213,6 +214,12 @@ public class HomePageController {
 
     @FXML
     private void loadSportPage(MouseEvent event) throws IOException {
+        // Stops other transitions occurring at the same time
+        if (LockOut.isLocked()){
+            return;
+        }
+        LockOut.lock();
+
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/SportPage/SportPage.fxml"));
         Parent anchorSport = loader.load();
         Scene scene = burgerButton.getScene();
@@ -229,6 +236,12 @@ public class HomePageController {
 
     @FXML
     private void loadWeatherInfoPage(MouseEvent event) throws IOException {
+        // Stops other transitions occurring at the same time
+        if (LockOut.isLocked()){
+            return;
+        }
+        LockOut.lock();
+
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/WeatherInfoPage/WeatherInfoPage.fxml"));
         Parent anchorWeatherInfo = loader.load();
         Scene scene = mainTempPane.getScene();
@@ -240,7 +253,9 @@ public class HomePageController {
         KeyValue kv = new KeyValue(anchorWeatherInfo.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
         timeline.getKeyFrames().add(kf);
+
         timeline.play();
+
     }
 
     @FXML
