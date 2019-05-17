@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SportList {
-    static private List<Sport> sportList = null;
+    static private List<Sport> sportList = new ArrayList<>();
 
     public static List<Sport> get() {
         if (sportList == null) {
@@ -23,10 +23,12 @@ public class SportList {
     }
 
     public static void remove(Sport sport) {
-        sportList.remove(sport);
+        if (sportList != null)
+            sportList.remove(sport);
     }
 
-    public static void clear(Sport sport) {
-        sportList.clear();
+    public static void clear() {
+        if (sportList != null)
+            sportList.clear();
     }
 }

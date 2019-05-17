@@ -4,13 +4,11 @@ import java.util.*;
 
 public class RelevantInfo {
 
-    private static List<Param> top3 = null;
-    private static List<Sport> sportsLastComputed = null;
+    private static List<Param> top3 = new ArrayList<>();
 
     //compute the most important 3 parameters. based on the impact factors
     //takes as argument the current selection of sports
-    private static List<Param> computeTop3 (List<Sport> interestSports) {
-        sportsLastComputed = interestSports;
+    public static List<Param> computeTop3 (List<Sport> interestSports) {
         Map<Param, Integer> paramScores = new HashMap<>();
 
         for (Sport s : interestSports) {
@@ -19,6 +17,7 @@ public class RelevantInfo {
 
                 //add one score point for each mention of parameter p
                 //in the list of parameters that influence selected sports
+                // TODO: Are all those factors have equal weight, or the order does matter?
                 if (paramScores.containsKey(p)) {
                     paramScores.put(p, paramScores.get(p) + 1);
                 }
@@ -58,13 +57,15 @@ public class RelevantInfo {
         return new ArrayList<>(List.of(max1, max2, max3));
     }
 
-    //pass the current selection of sports as a list, get the top 3 parameters
-    public static List<Param> getTop3 (List<Sport> interestSports) {
-        //only recompute if the selection of sports has changed from the last call
-        if (top3 == null || !interestSports.equals(sportsLastComputed)) {
-            top3 = computeTop3(interestSports);
-        }
-
-        return top3;
-    }
+    // From Victor Zhao: lazy implementation won't work here because reference of sportsLastComputed has changed
+    //                   and it will always pass the condition
+    ////pass the current selection of sports as a list, get the top 3 parameters
+    //public static List<Param> getTop3 (List<Sport> interestSports) {
+    //    //only recompute if the selection of sports has changed from the last call
+    //    if (top3 == null || !interestSports.equals(sportsLastComputed)) {
+    //        top3 = computeTop3(interestSports);
+    //    }
+    //
+    //    return top3;
+    //}
 }

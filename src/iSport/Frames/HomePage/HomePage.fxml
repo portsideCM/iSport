@@ -13,7 +13,7 @@
 
 <StackPane fx:id="masterContainer" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.iSport.Frames.HomePage.HomePageController">
    <children>
-      <AnchorPane fx:id="anchorHomePage" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
+      <AnchorPane fx:id="anchorHomePage" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" onMouseMoved="#initialize" prefHeight="600.0" prefWidth="335.0">
           <children>
               <Pane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
                   <children>
@@ -44,19 +44,19 @@
                               <Pane layoutX="15.0" layoutY="13.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
                               <Pane layoutX="15.0" layoutY="23.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
                               <Pane layoutX="15.0" layoutY="33.0" onMouseClicked="#loadSportPage" prefHeight="5.0" prefWidth="24.0" style="-fx-background-color: #cacaca; -fx-background-radius: 15;" />
-                              <Pane layoutX="262.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" styleClass="fadePane">
+                              <Pane layoutX="262.0" layoutY="9.0" onMouseClicked="#switchTempUnit" prefHeight="35.0" prefWidth="69.0" styleClass="fadePane">
                                  <children>
-                                            <Label id="TempUnitA" fx:id="celsiusLabel" layoutX="4.0" layoutY="4.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" style="-fx-alignment: center-right;" text="°C" textFill="WHITE">
+                                            <Label id="TempUnitA" fx:id="celsiusLabel" layoutX="4.0" layoutY="4.0" opacity="0.8" prefHeight="27.0" prefWidth="22.0" style="-fx-alignment: center-right;" text="°C" textFill="WHITE">
                                                 <font>
                                                     <Font name="Consolas Bold" size="23.0" />
                                                 </font>
                                             </Label>
-                                            <Label fx:id="slashLabel" layoutX="29.0" layoutY="4.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="/" textFill="#f5f5f5">
+                                            <Label fx:id="slashLabel" layoutX="29.0" layoutY="4.0" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="/" textFill="#f5f5f5">
                                                 <font>
                                                     <Font name="Consolas Bold" size="20.0" />
                                                 </font>
                                             </Label>
-                                            <Label id="TempUnitB" fx:id="fahrenheitLabel" layoutX="38.0" layoutY="4.0" onMouseClicked="#switchTempUnit" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="°F" textFill="#b2b2b2">
+                                            <Label id="TempUnitB" fx:id="fahrenheitLabel" layoutX="38.0" layoutY="4.0" opacity="0.8" prefHeight="27.0" prefWidth="22.0" text="°F" textFill="#b2b2b2">
                                                 <font>
                                                     <Font name="Consolas Bold" size="18.0" />
                                                 </font>
@@ -93,7 +93,7 @@
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="InfoIcon1" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="info1Icon" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/WIND.png" />
                                        </image>
@@ -107,7 +107,7 @@
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="InfoIcon2" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="info2Icon" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/WIND.png" />
                                        </image>
@@ -121,7 +121,7 @@
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
                                               </Label>
-                                    <ImageView fx:id="InfoIcon3" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="info3Icon" fitHeight="61.0" fitWidth="91.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../.idea/Icons/WIND.png" />
                                        </image>

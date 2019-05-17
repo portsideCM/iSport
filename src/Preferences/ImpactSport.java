@@ -1,6 +1,7 @@
 package src.Preferences;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ class ImpactSport { //package visible
         factors.put(Sport.SAILING, new ArrayList<>(List.of(Param.WIND, Param.VISIBILITY, Param.RAIN, Param.SUN)));
         factors.put(Sport.CYCLING, new ArrayList<>(List.of(Param.WIND, Param.TEMPERATURE, Param.HUMIDITY)));
         factors.put(Sport.HIKING, new ArrayList<>(List.of(Param.SUN, Param.CLOUD, Param.PRESSURE, Param.RAIN)));
-        factors.put(Sport.CRICKET, new ArrayList<>(List.of(Param.WIND, Param.VISIBILITY)));
+        factors.put(Sport.CRICKET, new ArrayList<>(List.of(Param.WIND, Param.VISIBILITY, Param.TEMPERATURE)));
         factors.put(Sport.TENNIS, new ArrayList<>(List.of(Param.WIND, Param.SUN, Param.HUMIDITY)));
     }
 
@@ -27,6 +28,7 @@ class ImpactSport { //package visible
 
         //perform lazy instantiation, such that we only load factors once
         if (factors == null) {
+            factors = new HashMap<>();
             ImpactSport.loadFactors();
         }
 

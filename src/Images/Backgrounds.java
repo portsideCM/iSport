@@ -20,8 +20,8 @@ public class Backgrounds {
     public Image TENNIS_BG;
     public Image VOLLEYBALL_BG;
 
-    //Display backgrounds
-    public Backgrounds(){
+    // Display backgrounds
+    public Backgrounds() {
         CRICKET_BG = new Image(".idea/Backgrounds/CRICKET.jpg");
         CYCLING_BG = new Image(".idea/Backgrounds/CYCLING.jpg");
         FOOTBALL_BG = new Image(".idea/Backgrounds/FOOTBALL.jpg");
@@ -34,43 +34,38 @@ public class Backgrounds {
         VOLLEYBALL_BG = new Image(".idea/Backgrounds/VOLLEYBALL.jpg");
     }
 
-    //Gets the best background
-    public Image getBestBackground(){
-
-
-
+    // Gets the best background
+    public Image getBestBackground() {
         List<Sport> options = SportList.get();
 
-        if (options.size() == 0){
+        if (options.size() == 0) {
             return SAILING_BG;
         }
 
-        //Chooses a sport from the list based on the day, meaning the background will change daily
+        // Chooses a sport from the list based on the day, meaning the background will change daily
         int location = LocalDate.now().getDayOfMonth() % options.size();
         Sport choice = options.get(location);
 
-        if (choice == Sport.CRICKET){
+        if (choice == Sport.CRICKET) {
             return CRICKET_BG;
-        } else if (choice == Sport.CYCLING){
+        } else if (choice == Sport.CYCLING) {
             return CYCLING_BG;
-        } else if (choice == Sport.FOOTBALL){
+        } else if (choice == Sport.FOOTBALL) {
             return FOOTBALL_BG;
-        } else if (choice == Sport.HIKING){
+        } else if (choice == Sport.HIKING) {
             return HIKING_BG;
-        } else if (choice == Sport.ROWING){
+        } else if (choice == Sport.ROWING) {
             return ROWING_BG;
-        } else if (choice == Sport.RUGBY){
+        } else if (choice == Sport.RUGBY) {
             return RUGBY_BG;
-        } else if (choice == Sport.RUNNING){
+        } else if (choice == Sport.RUNNING) {
             return RUN_BG;
-        } else if (choice == Sport.SAILING){
+        } else if (choice == Sport.SAILING) {
             return SAILING_BG;
-        } else if (choice == Sport.TENNIS){
+        } else if (choice == Sport.TENNIS) {
             return TENNIS_BG;
-        } else {  //Must be volleyball
+        } else {  // Must be volleyball
             return VOLLEYBALL_BG;
         }
-
     }
-
 }

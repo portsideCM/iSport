@@ -6,7 +6,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,12 +18,12 @@ import src.Preferences.Sport;
 import src.Preferences.SportList;
 
 import java.io.IOException;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.*;
+import java.util.Map;
 
-public class SportPageController implements Initializable {
+public class SportPageController {
 
     @FXML
     private Pane rugbyPane;
@@ -58,11 +57,10 @@ public class SportPageController implements Initializable {
     private final Background selected = new Background(new BackgroundFill(Color.web("rgba(50,50,50,0.8)"), new CornerRadii(15), Insets.EMPTY));
     private final Background notSelected = new Background(new BackgroundFill(Color.web("rgba(175,175,175,0.8)"), new CornerRadii(15), Insets.EMPTY));
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        //Adds pane to sport mapping and all sports a panes to a map and list
-        //Must be done here as panes are created on initialize
+    @FXML
+    public void initialize() {
+        // Adds pane to sport mapping and all sports a panes to a map and list
+        // Must be done here as panes are created on initialize
         paneToSportMap = new HashMap<>(Map.of(
                 rugbyPane, Sport.RUGBY,
                 footballPane, Sport.FOOTBALL,
@@ -79,8 +77,8 @@ public class SportPageController implements Initializable {
 
         //Highlights selected sports
         List<Sport> selectedSports = SportList.get();
-        for (Pane sportP : sportPanes){
-            if (selectedSports.contains(paneToSportMap.get(sportP))){
+        for (Pane sportP : sportPanes) {
+            if (selectedSports.contains(paneToSportMap.get(sportP))) {
                 sportP.setStyle("-fx-background-color: rgba(50, 50, 50, 0.8);");
             }
         }
@@ -90,20 +88,33 @@ public class SportPageController implements Initializable {
     @FXML
     private void selectSport(MouseEvent event) {
         Pane paneClicked = (Pane) event.getSource();
-        if (paneClicked.getBackground().getFills().get(0).getFill().equals(notSelected.getFills().get(0).getFill())) { // select a sport
+        if (paneClicked.getBackground().getFills().get(0).getFill().equals(notSelected.getFills().get(0).getFill())) // select a sport
             paneClicked.setBackground(selected);
-            SportList.add(paneToSportMap.get(paneClicked));
-        } else { // deselect a sport
+        else // deselect a sport
             paneClicked.setBackground(notSelected);
-            SportList.remove(paneToSportMap.get(paneClicked));
-        }
     }
 
     @FXML
     private void loadHomePage(MouseEvent event) throws IOException {
-        // TODO: record which sports are selected and change the home page layout accordingly
-
-
+        // record which sports are selected
+        paneToSportMap = new HashMap<>(Map.of(
+                rugbyPane, Sport.RUGBY,
+                footballPane, Sport.FOOTBALL,
+                volleyballPane, Sport.VOLLEYBALL,
+                tennisPane, Sport.TENNIS,
+                cricketPane, Sport.CRICKET,
+                cyclingPane, Sport.CYCLING,
+                runningPane, Sport.RUNNING,
+                rowingPane, Sport.ROWING,
+                hikingPane, Sport.HIKING,
+                sailingPane, Sport.SAILING
+        ));
+        sportPanes = new ArrayList<>(paneToSportMap.keySet());
+        SportList.clear();
+        for (Pane pane : sportPanes) {
+            if (pane.getBackground().getFills().get(0).getFill().equals(selected.getFills().get(0).getFill()))
+                SportList.add(paneToSportMap.get(pane));
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"));
         Parent anchorHomePage = loader.load(); // currently anchorHomePage is the StackPane

@@ -7,7 +7,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -26,17 +26,29 @@ import src.API.Forecast;
 import src.API.ForecastData;
 import src.Images.Backgrounds;
 import src.Images.Icons;
+import src.Preferences.Param;
+import src.Preferences.RelevantInfo;
+import src.Preferences.Sport;
+import src.Preferences.SportList;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ResourceBundle;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class HomePageController implements Initializable {
+import static src.iSport.Main.refreshListenerAdded;
 
+public class HomePageController {
+
+    @FXML
+    private AnchorPane anchorHomePage;
     @FXML
     private ImageView backgroundHome;
     @FXML
@@ -66,6 +78,12 @@ public class HomePageController implements Initializable {
     @FXML
     private Label timeLabel;
     @FXML
+    private ImageView info1Icon;
+    @FXML
+    private ImageView info2Icon;
+    @FXML
+    private ImageView info3Icon;
+    @FXML
     private Label info1Label;
     @FXML
     private Label info2Label;
@@ -88,39 +106,46 @@ public class HomePageController implements Initializable {
     @FXML
     private Label day4TempLabel;
 
-    //Loads up all background images
+    // Loads up all background images
     private Backgrounds bg = new Backgrounds();
-    //Load up all weather icons
+    // Load up all weather icons
     private Icons ic = new Icons();
 
     private static final String cityName = "Cambridge,uk";
 
     // C for celsius, F for fahrenheit
-    private String tempUnit = "C";
+    private static String tempUnit = "C";
 
-    //Called when page is loaded
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    // Called when page is loaded
+    @FXML
+    public void initialize() {
+        // Creates a map from params to icons
+        Map<Param, Image> paramIconMap = new HashMap<>(Map.of(
+                Param.CLOUD, ic.CLOUD_IC,
+                Param.HUMIDITY, ic.HUMID_IC,
+                Param.PRESSURE, ic.PRESSURE_IC, // TODO: Pressure icon is not designed yet
+                Param.RAIN, ic.RAINDROPS_IC,
+                Param.SUN, ic.SUN_IC,
+                Param.TEMPERATURE, ic.TEMP_IC,
+                Param.VISIBILITY, ic.VISIBILITY_IC, // TODO: Visibility icon is not designed yet
+                Param.WIND, ic.WIND_IC
+        ));
 
-
-        //updates Display
-        Image backgroundImage = bg.getBestBackground();
-        backgroundHome.setImage(backgroundImage);
-
-
-        //Sets location and date
-        locationLabel.setText("Cambridge");
-        timeLabel.setText(LocalDate.now().toString());
-
-
-        //Loads weather info and displays it
+        // Loads weather info and displays it
         try {
+            //updates Display
+            Image backgroundImage = bg.getBestBackground();
+            backgroundHome.setImage(backgroundImage);
+
+            //Sets location and date
+            locationLabel.setText("Cambridge");
+            timeLabel.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
             Forecast forecast = conn.getForecast(cityName, true);
 
-
-            //Sets main weather info
+            // Sets main weather info
             if (tempUnit == "C") {
                 mainTempLabel.setText(Math.round(currentWeather.getTempInCelsius(currentWeather.Temp)) + "°");
             } else {
@@ -128,7 +153,17 @@ public class HomePageController implements Initializable {
             }
             mainTempIcon.setImage(ic.iconCalc(currentWeather.WeatherId));
 
-            //Set day 1 weather info
+            // Sets key weather info
+            List<Sport> options = SportList.get();
+            List<Param> top3Factors = RelevantInfo.computeTop3(options);
+            info1Icon.setImage(paramIconMap.get(top3Factors.get(0)));
+            info1Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(0)));
+            info2Icon.setImage(paramIconMap.get(top3Factors.get(1)));
+            info2Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(1)));
+            info3Icon.setImage(paramIconMap.get(top3Factors.get(2)));
+            info3Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(2)));
+
+            // Sets day 1 weather info
             ForecastData day1 = forecast.nextDayWeather(LocalDate.now(), 1, ZoneId.of("GMT"));
             dayIcon1.setImage(ic.iconCalc(day1.WeatherId));
             String tempMin1 = String.valueOf(Math.round(convert(day1.TempMin, day1)));
@@ -136,38 +171,39 @@ public class HomePageController implements Initializable {
             day1TempLabel.setText(tempMin1 + "°-" + tempMax1 + "°");
             day1Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(1).getDayOfWeek()));
 
-
-            //Set day 2 weather info
+            // Set day 2 weather info
             ForecastData day2 = forecast.nextDayWeather(LocalDate.now(), 2, ZoneId.of("GMT"));
             dayIcon2.setImage(ic.iconCalc(day2.WeatherId));
             String tempMin2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
-            String tempMax2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
+            String tempMax2 = String.valueOf(Math.round(convert(day2.TempMax, day2)));
             day2TempLabel.setText(tempMin2 + "°-" + tempMax2 + "°");
             day2Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(2).getDayOfWeek()));
 
-            //Set day 3 weather info
+            // Set day 3 weather info
             ForecastData day3 = forecast.nextDayWeather(LocalDate.now(), 3, ZoneId.of("GMT"));
             dayIcon3.setImage(ic.iconCalc(day3.WeatherId));
             String tempMin3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
-            String tempMax3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
+            String tempMax3 = String.valueOf(Math.round(convert(day3.TempMax, day3)));
             day3TempLabel.setText(tempMin3 + "°-" + tempMax3 + "°");
             day3Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(3).getDayOfWeek()));
 
-            //Set day 4 weather info
+            // Set day 4 weather info
             ForecastData day4 = forecast.nextDayWeather(LocalDate.now(), 4, ZoneId.of("GMT"));
             dayIcon4.setImage(ic.iconCalc(day4.WeatherId));
             String tempMin4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
-            String tempMax4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
+            String tempMax4 = String.valueOf(Math.round(convert(day4.TempMax, day4)));
             day4TempLabel.setText(tempMin4 + "°-" + tempMax4 + "°");
             day4Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(4).getDayOfWeek()));
-
         } catch (IOException e) {
             // Have some nice error message b/c the API failed here
             System.out.println("ERROR ON LOADING WEATHER");
             e.printStackTrace();
         }
 
-
+        if (!refreshListenerAdded) {
+            refreshListenerAdded = true;
+            anchorHomePage.hoverProperty().addListener(observable -> this.initialize());
+        }
     }
 
     @FXML
@@ -219,11 +255,11 @@ public class HomePageController implements Initializable {
         }
 
         //updates Display
-        initialize(getClass().getClassLoader().getResource("src/iSport/Frames/HomePage/HomePage.fxml"), null);
+        this.initialize();
     }
 
-    //Decides what unit to display the temp in
-    private double convert(double T, ForecastData FD) {
+    // Decides what unit to display the temp in
+    public static double convert(double T, ForecastData FD) {
         if (tempUnit.equals("C")) {
             return FD.getTempInCelsius(T);
         } else {
@@ -231,11 +267,42 @@ public class HomePageController implements Initializable {
         }
     }
 
+    // Query the correct info for the weather factor
+    private String getWeatherInfo(CurrentWeather currentWeather, Forecast forecast, Param param) {
+        // TODO: need detailed decoration on each string
+        if (param.equals(Param.CLOUD))
+            return String.valueOf(currentWeather.CloudCover);
+        else if (param.equals(Param.HUMIDITY))
+            return String.valueOf(currentWeather.Humidity);
+        else if (param.equals(Param.PRESSURE))
+            return String.valueOf(currentWeather.Pressure);
+        else if (param.equals(Param.RAIN))
+            return String.valueOf(currentWeather.Rain1h);
+        else if (param.equals(Param.SUN)) { // TODO: what does Param.SUN mean? I'm here assuming it is sunrise & sunset time
+            LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.of("GMT")));
+            String sunrise = localSunRise.format(DateTimeFormatter.ofPattern("HH:mm"));
+            LocalTime localSunSet = LocalTime.from(currentWeather.Sunset.atZone(ZoneId.of("GMT")));
+            String sunset = localSunSet.format(DateTimeFormatter.ofPattern("HH:mm"));
+            return sunrise + "\n" + sunset;
+        } else if (param.equals(Param.TEMPERATURE)) {
+            ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.of("GMT"));
+            String tempMin = String.valueOf(Math.round(convert(today.TempMin, today)));
+            String tempMax = String.valueOf(Math.round(convert(today.TempMax, today)));
+            return tempMin + "°-" + tempMax + "°";
+        } else if (param.equals(Param.VISIBILITY))
+            return String.valueOf(currentWeather.Visibility);
+        else { // Must be WIND // ASSERT: param can't be VOID
+            String windSpeed = String.valueOf(currentWeather.WindSpeed);
+            String windDir = String.valueOf(currentWeather.WindDir);
+            return windSpeed + " " + windDir;
+        }
+    }
+
     //Formats day of the week
-    private String dayOfWeekAsString(DayOfWeek day){
+    private String dayOfWeekAsString(DayOfWeek day) {
         String dayString = String.valueOf(day);
-        String a = dayString.substring(0,1);
+        String a = dayString.substring(0, 1);
         String b = dayString.substring(1).toLowerCase();
-        return a+b;
+        return a + b;
     }
 }
