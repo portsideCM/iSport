@@ -68,7 +68,7 @@ public class WeatherInfoPageController {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
             CurrentWeather curr = conn.getCurrentWeather(cityName, true);
             Forecast forecast = conn.getForecast(cityName, true);
-            ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.of("GMT"));
+            ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.systemDefault());
             String tempMin = String.valueOf(Math.round(HomePageController.convert(today.TempMin, today)));
             String tempMax = String.valueOf(Math.round(HomePageController.convert(today.TempMax, today)));
             tempLabel.setText(tempMin + "°-" + tempMax + "°");
