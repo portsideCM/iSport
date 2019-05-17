@@ -277,7 +277,7 @@ public class HomePageController {
             return currentWeather.Pressure + " hPa";
         else if (param.equals(Param.RAIN))
             return currentWeather.Rain1h +" mm";
-        else if (param.equals(Param.SUN)) { // TODO: what does Param.SUN mean? I'm here assuming it is sunrise & sunset time
+        else if (param.equals(Param.SUN)) {
             LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.systemDefault()));
             String sunrise = localSunRise.format(DateTimeFormatter.ofPattern("HH:mm"));
             LocalTime localSunSet = LocalTime.from(currentWeather.Sunset.atZone(ZoneId.systemDefault()));
