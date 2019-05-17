@@ -182,6 +182,7 @@ public class APIConnectionSingleton {
             }
             result.ForecastList.add(temp);
         }
+        result.calculated = Instant.now();
         return result;
     }
 
@@ -227,7 +228,7 @@ public class APIConnectionSingleton {
     }
 
     public Forecast getForecast(String cityName, boolean useHTTPS) throws IOException {
-        if(m_currentForecast != null && m_currentForecast.ForecastList.get(0).Time.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+        if(m_currentForecast != null && m_currentForecast.calculated.plusSeconds(30).compareTo(Instant.now()) >= 0) {
             return m_currentForecast;
         }
         Map<String, String> params = new HashMap<>();
@@ -240,7 +241,7 @@ public class APIConnectionSingleton {
     }
 
     public Forecast getForecast(String lon, String lat, boolean useHTTPS) throws IOException {
-        if(m_currentForecast != null && m_currentForecast.ForecastList.get(0).Time.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+        if(m_currentForecast != null && m_currentForecast.calculated.plusSeconds(30).compareTo(Instant.now()) >= 0) {
             return m_currentForecast;
         }
         Map<String, String> params = new HashMap<>();

@@ -1,11 +1,13 @@
 package src.API;
 
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class Forecast {
+    public Instant calculated;
     public ArrayList<ForecastData> ForecastList;
 
     public ForecastData nextDayWeather(LocalDate today, int daysForward, ZoneId timeZone) {
