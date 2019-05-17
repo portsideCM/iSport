@@ -88,7 +88,7 @@
                                   <children>
                                       <Pane layoutX="20.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
                                           <children>
-                                              <Label id="Info1Label" fx:id="info1Label" layoutX="-1.0" layoutY="57.0" prefHeight="18.0" prefWidth="85.0" styleClass="textStyle" text="[Info 1]">
+                                              <Label id="Info1Label" fx:id="info1Label" layoutY="48.0" prefHeight="36.0" prefWidth="85.0" styleClass="textStyle" text="[Info 1]" textAlignment="CENTER">
                                                   <font>
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
@@ -102,7 +102,7 @@
                               </Pane>
                                       <Pane layoutX="125.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
                                           <children>
-                                              <Label id="Info2Label" fx:id="info2Label" layoutY="57.0" prefHeight="18.0" prefWidth="85.0" styleClass="textStyle" text="[Info 2]">
+                                              <Label id="Info2Label" fx:id="info2Label" layoutY="48.0" prefHeight="36.0" prefWidth="85.0" styleClass="textStyle" text="[Info 2]" textAlignment="CENTER">
                                                   <font>
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>
@@ -116,7 +116,7 @@
                               </Pane>
                                       <Pane layoutX="230.0" layoutY="13.0" prefHeight="85.0" prefWidth="85.0" styleClass="fadePane">
                                           <children>
-                                              <Label id="Info3Label" fx:id="info3Label" layoutY="57.0" prefHeight="18.0" prefWidth="85.0" styleClass="textStyle" text="[Info 3]">
+                                              <Label id="Info3Label" fx:id="info3Label" layoutY="48.0" prefHeight="36.0" prefWidth="85.0" styleClass="textStyle" text="[Info 3]" textAlignment="CENTER">
                                                   <font>
                                                       <Font name="Consolas Bold" size="15.0" />
                                                   </font>

@@ -269,15 +269,14 @@ public class HomePageController {
 
     // Query the correct info for the weather factor
     private String getWeatherInfo(CurrentWeather currentWeather, Forecast forecast, Param param) {
-        // TODO: need detailed decoration on each string
         if (param.equals(Param.CLOUD))
-            return String.valueOf(currentWeather.CloudCover);
+            return currentWeather.CloudCover + "%";
         else if (param.equals(Param.HUMIDITY))
-            return String.valueOf(currentWeather.Humidity);
+            return Math.round(currentWeather.Humidity) + "%";
         else if (param.equals(Param.PRESSURE))
-            return String.valueOf(currentWeather.Pressure);
+            return currentWeather.Pressure + " hPa";
         else if (param.equals(Param.RAIN))
-            return String.valueOf(currentWeather.Rain1h);
+            return currentWeather.Rain1h +" mm";
         else if (param.equals(Param.SUN)) { // TODO: what does Param.SUN mean? I'm here assuming it is sunrise & sunset time
             LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.systemDefault()));
             String sunrise = localSunRise.format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -290,19 +289,39 @@ public class HomePageController {
             String tempMax = String.valueOf(Math.round(convert(today.TempMax, today)));
             return tempMin + "°-" + tempMax + "°";
         } else if (param.equals(Param.VISIBILITY))
-            return String.valueOf(currentWeather.Visibility);
-        else { // Must be WIND // ASSERT: param can't be VOID
-            String windSpeed = String.valueOf(currentWeather.WindSpeed);
-            String windDir = String.valueOf(currentWeather.WindDir);
-            return windSpeed + " " + windDir;
-        }
+            return currentWeather.Visibility + " m";
+        else // Must be WIND // ASSERT: param can't be VOID
+            return windAsString(currentWeather.WindSpeed, currentWeather.WindDir);
     }
 
-    //Formats day of the week
+    // Formats day of the week
     private String dayOfWeekAsString(DayOfWeek day) {
         String dayString = String.valueOf(day);
         String a = dayString.substring(0, 1);
         String b = dayString.substring(1).toLowerCase();
         return a + b;
+    }
+
+    // Formats wind speed and direction
+    public static String windAsString(double windSpeed, int windDir) {
+        String windSpeedStr = windSpeed + " m/s";
+        String windDirStr = windDir + "° ";
+        if (windDir >= 23 && windDir < 68)
+            windDirStr += "NE";
+        else if (windDir >= 68 && windDir < 113)
+            windDirStr += "E";
+        else if (windDir >= 113 && windDir < 158)
+            windDirStr += "SE";
+        else if (windDir >= 158 && windDir < 203)
+            windDirStr += "S";
+        else if (windDir >= 203 && windDir < 248)
+            windDirStr += "SW";
+        else if (windDir >= 248 && windDir < 293)
+            windDirStr += "W";
+        else if (windDir >= 293 && windDir < 338)
+            windDirStr += "NW";
+        else // Must be North
+            windDirStr += "N";
+        return windSpeedStr + "\n" + windDirStr;
     }
 }

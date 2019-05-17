@@ -66,21 +66,21 @@ public class WeatherInfoPageController {
 
         try {
             APIConnectionSingleton conn = APIConnectionSingleton.getAPIConnection();
-            CurrentWeather curr = conn.getCurrentWeather(cityName, true);
+            CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
             Forecast forecast = conn.getForecast(cityName, true);
             ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.systemDefault());
             String tempMin = String.valueOf(Math.round(HomePageController.convert(today.TempMin, today)));
             String tempMax = String.valueOf(Math.round(HomePageController.convert(today.TempMax, today)));
             tempLabel.setText(tempMin + "°-" + tempMax + "°");
-            pressureLabel.setText(String.valueOf(Math.round(curr.Pressure)));
-            humidityLabel.setText(String.valueOf(Math.round(curr.Humidity)));
-            windLabel.setText(String.valueOf(Math.round(curr.WindSpeed)));
-            cloudCoverLabel.setText(String.valueOf(Math.round(curr.CloudCover)));
-            precipitationLabel.setText(String.valueOf(Math.round(curr.Rain1h)));
-            visibilityLabel.setText(String.valueOf(Math.round(curr.Visibility)));
-            LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.systemDefault()));
+            pressureLabel.setText(currentWeather.Pressure + " hPa");
+            humidityLabel.setText(Math.round(currentWeather.Humidity) + "%");
+            windLabel.setText(HomePageController.windAsString(currentWeather.WindSpeed, currentWeather.WindDir));
+            cloudCoverLabel.setText(currentWeather.CloudCover + "%");
+            precipitationLabel.setText(currentWeather.Rain1h +" mm");
+            visibilityLabel.setText(currentWeather.Visibility + " m");
+            LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.systemDefault()));
             sunriseLabel.setText(localSunRise.format(DateTimeFormatter.ofPattern("HH:mm")));
-            LocalTime localSunSet = LocalTime.from(curr.Sunset.atZone(ZoneId.systemDefault()));
+            LocalTime localSunSet = LocalTime.from(currentWeather.Sunset.atZone(ZoneId.systemDefault()));
             sunsetLabel.setText(localSunSet.format(DateTimeFormatter.ofPattern("HH:mm")));
         }
         catch(IOException e) {
