@@ -279,13 +279,13 @@ public class HomePageController {
         else if (param.equals(Param.RAIN))
             return String.valueOf(currentWeather.Rain1h);
         else if (param.equals(Param.SUN)) { // TODO: what does Param.SUN mean? I'm here assuming it is sunrise & sunset time
-            LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.of("GMT")));
+            LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.systemDefault()));
             String sunrise = localSunRise.format(DateTimeFormatter.ofPattern("HH:mm"));
-            LocalTime localSunSet = LocalTime.from(currentWeather.Sunset.atZone(ZoneId.of("GMT")));
+            LocalTime localSunSet = LocalTime.from(currentWeather.Sunset.atZone(ZoneId.systemDefault()));
             String sunset = localSunSet.format(DateTimeFormatter.ofPattern("HH:mm"));
             return sunrise + "\n" + sunset;
         } else if (param.equals(Param.TEMPERATURE)) {
-            ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.of("GMT"));
+            ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.systemDefault());
             String tempMin = String.valueOf(Math.round(convert(today.TempMin, today)));
             String tempMax = String.valueOf(Math.round(convert(today.TempMax, today)));
             return tempMin + "°-" + tempMax + "°";
