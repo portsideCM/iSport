@@ -18,7 +18,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         SportList.clear();
-        SportList.add(Sport.ROWING);
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("Frames/HomePage/HomePage.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("iSports");

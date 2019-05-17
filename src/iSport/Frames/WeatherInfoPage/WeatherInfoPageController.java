@@ -69,9 +69,8 @@ public class WeatherInfoPageController {
             CurrentWeather currentWeather = conn.getCurrentWeather(cityName, true);
             Forecast forecast = conn.getForecast(cityName, true);
             ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.systemDefault());
-            String tempMin = String.valueOf(Math.round(HomePageController.convert(today.TempMin, today)));
-            String tempMax = String.valueOf(Math.round(HomePageController.convert(today.TempMax, today)));
-            tempLabel.setText(tempMin + "°-" + tempMax + "°");
+            String temp = String.valueOf(Math.round(HomePageController.convert(today.Temp, today)));
+            tempLabel.setText(temp + "°");
             pressureLabel.setText(currentWeather.Pressure + " hPa");
             humidityLabel.setText(Math.round(currentWeather.Humidity) + "%");
             windLabel.setText(HomePageController.windAsString(currentWeather.WindSpeed, currentWeather.WindDir));

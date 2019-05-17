@@ -155,44 +155,49 @@ public class HomePageController {
 
             // Sets key weather info
             List<Sport> options = SportList.get();
-            List<Param> top3Factors = RelevantInfo.computeTop3(options);
-            info1Icon.setImage(paramIconMap.get(top3Factors.get(0)));
-            info1Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(0)));
-            info2Icon.setImage(paramIconMap.get(top3Factors.get(1)));
-            info2Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(1)));
-            info3Icon.setImage(paramIconMap.get(top3Factors.get(2)));
-            info3Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(2)));
+            if (options.isEmpty()) {
+                info1Icon.setImage(ic.RAIN_IC);
+                info1Label.setText(getWeatherInfo(currentWeather, forecast, Param.RAIN));
+                info2Icon.setImage(ic.WIND_IC);
+                info2Label.setText(getWeatherInfo(currentWeather, forecast, Param.WIND));
+                info3Icon.setImage(ic.HUMID_IC);
+                info3Label.setText(getWeatherInfo(currentWeather, forecast, Param.HUMIDITY));
+            } else {
+                List<Param> top3Factors = RelevantInfo.computeTop3(options);
+                info1Icon.setImage(paramIconMap.get(top3Factors.get(0)));
+                info1Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(0)));
+                info2Icon.setImage(paramIconMap.get(top3Factors.get(1)));
+                info2Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(1)));
+                info3Icon.setImage(paramIconMap.get(top3Factors.get(2)));
+                info3Label.setText(getWeatherInfo(currentWeather, forecast, top3Factors.get(2)));
+            }
 
             // Sets day 1 weather info
             ForecastData day1 = forecast.nextDayWeather(LocalDate.now(), 1, ZoneId.of("GMT"));
             dayIcon1.setImage(ic.iconCalc(day1.WeatherId));
-            String tempMin1 = String.valueOf(Math.round(convert(day1.TempMin, day1)));
-            String tempMax1 = String.valueOf(Math.round(convert(day1.TempMax, day1)));
-            day1TempLabel.setText(tempMin1 + "°-" + tempMax1 + "°");
+            String tempDay1 = String.valueOf(Math.round(convert(day1.Temp, day1)));
+            day1TempLabel.setText(tempDay1 + "°");
             day1Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(1).getDayOfWeek()));
 
             // Set day 2 weather info
             ForecastData day2 = forecast.nextDayWeather(LocalDate.now(), 2, ZoneId.of("GMT"));
             dayIcon2.setImage(ic.iconCalc(day2.WeatherId));
-            String tempMin2 = String.valueOf(Math.round(convert(day2.TempMin, day2)));
-            String tempMax2 = String.valueOf(Math.round(convert(day2.TempMax, day2)));
-            day2TempLabel.setText(tempMin2 + "°-" + tempMax2 + "°");
+            String tempDay2 = String.valueOf(Math.round(convert(day2.Temp, day2)));
+            day2TempLabel.setText(tempDay2 + "°");
             day2Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(2).getDayOfWeek()));
 
             // Set day 3 weather info
             ForecastData day3 = forecast.nextDayWeather(LocalDate.now(), 3, ZoneId.of("GMT"));
             dayIcon3.setImage(ic.iconCalc(day3.WeatherId));
-            String tempMin3 = String.valueOf(Math.round(convert(day3.TempMin, day3)));
-            String tempMax3 = String.valueOf(Math.round(convert(day3.TempMax, day3)));
-            day3TempLabel.setText(tempMin3 + "°-" + tempMax3 + "°");
+            String tempDay3 = String.valueOf(Math.round(convert(day3.Temp, day3)));
+            day3TempLabel.setText(tempDay3 + "°");
             day3Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(3).getDayOfWeek()));
 
             // Set day 4 weather info
             ForecastData day4 = forecast.nextDayWeather(LocalDate.now(), 4, ZoneId.of("GMT"));
             dayIcon4.setImage(ic.iconCalc(day4.WeatherId));
-            String tempMin4 = String.valueOf(Math.round(convert(day4.TempMin, day4)));
-            String tempMax4 = String.valueOf(Math.round(convert(day4.TempMax, day4)));
-            day4TempLabel.setText(tempMin4 + "°-" + tempMax4 + "°");
+            String tempDay4 = String.valueOf(Math.round(convert(day4.Temp, day4)));
+            day4TempLabel.setText(tempDay4 + "°");
             day4Label.setText(dayOfWeekAsString(LocalDate.now().plusDays(4).getDayOfWeek()));
         } catch (IOException e) {
             // Have some nice error message b/c the API failed here
@@ -276,7 +281,7 @@ public class HomePageController {
         else if (param.equals(Param.PRESSURE))
             return currentWeather.Pressure + " hPa";
         else if (param.equals(Param.RAIN))
-            return currentWeather.Rain1h +" mm";
+            return currentWeather.Rain1h + " mm";
         else if (param.equals(Param.SUN)) {
             LocalTime localSunRise = LocalTime.from(currentWeather.Sunrise.atZone(ZoneId.systemDefault()));
             String sunrise = localSunRise.format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -285,9 +290,8 @@ public class HomePageController {
             return sunrise + "\n" + sunset;
         } else if (param.equals(Param.TEMPERATURE)) {
             ForecastData today = forecast.nextDayWeather(LocalDate.now(), 0, ZoneId.systemDefault());
-            String tempMin = String.valueOf(Math.round(convert(today.TempMin, today)));
-            String tempMax = String.valueOf(Math.round(convert(today.TempMax, today)));
-            return tempMin + "°-" + tempMax + "°";
+            String temp = String.valueOf(Math.round(convert(today.Temp, today)));
+            return temp + "°";
         } else if (param.equals(Param.VISIBILITY))
             return currentWeather.Visibility + " m";
         else // Must be WIND // ASSERT: param can't be VOID

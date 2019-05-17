@@ -19,6 +19,7 @@ public class Backgrounds {
     public Image SAILING_BG;
     public Image TENNIS_BG;
     public Image VOLLEYBALL_BG;
+    public Image BASE_BG;
 
     // Display backgrounds
     public Backgrounds() {
@@ -32,6 +33,7 @@ public class Backgrounds {
         SAILING_BG = new Image(".idea/Backgrounds/SAILING.jpg");
         TENNIS_BG = new Image(".idea/Backgrounds/TENNIS.jpg");
         VOLLEYBALL_BG = new Image(".idea/Backgrounds/VOLLEYBALL.jpg");
+        BASE_BG = new Image(".idea/Backgrounds/SPORT_PAGE.jpg");
     }
 
     // Gets the best background
@@ -39,7 +41,7 @@ public class Backgrounds {
         List<Sport> options = SportList.get();
 
         if (options.size() == 0) {
-            return SAILING_BG;
+            return BASE_BG;
         }
 
         // Chooses a sport from the list based on the day, meaning the background will change daily
