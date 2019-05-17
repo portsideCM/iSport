@@ -78,9 +78,9 @@ public class WeatherInfoPageController {
             cloudCoverLabel.setText(String.valueOf(Math.round(curr.CloudCover)));
             precipitationLabel.setText(String.valueOf(Math.round(curr.Rain1h)));
             visibilityLabel.setText(String.valueOf(Math.round(curr.Visibility)));
-            LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.of("GMT")));
+            LocalTime localSunRise = LocalTime.from(curr.Sunrise.atZone(ZoneId.systemDefault()));
             sunriseLabel.setText(localSunRise.format(DateTimeFormatter.ofPattern("HH:mm")));
-            LocalTime localSunSet = LocalTime.from(curr.Sunset.atZone(ZoneId.of("GMT")));
+            LocalTime localSunSet = LocalTime.from(curr.Sunset.atZone(ZoneId.systemDefault()));
             sunsetLabel.setText(localSunSet.format(DateTimeFormatter.ofPattern("HH:mm")));
         }
         catch(IOException e) {
