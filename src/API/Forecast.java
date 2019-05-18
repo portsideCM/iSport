@@ -1,6 +1,5 @@
 package src.API;
 
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -12,9 +11,9 @@ public class Forecast {
 
     public ForecastData nextDayWeather(LocalDate today, int daysForward, ZoneId timeZone) {
         today = today.plusDays(daysForward);
-        for(int i = 0; i < ForecastList.size(); ++i) {
+        for (int i = 0; i < ForecastList.size(); ++i) {
             //Check if the time is greater than or equal to the date passed in
-            if(ForecastList.get(i).Time.atZone(timeZone).toLocalDate().compareTo(today) >= 0) {
+            if (ForecastList.get(i).Time.atZone(timeZone).toLocalDate().compareTo(today) >= 0) {
                 return ForecastList.get(i);
             }
         }

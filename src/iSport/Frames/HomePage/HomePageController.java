@@ -1,6 +1,5 @@
 package src.iSport.Frames.HomePage;
 
-
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

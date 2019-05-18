@@ -193,7 +193,7 @@ public class APIConnectionSingleton {
      * @throws IOException If the city name is invalid or the connection to the API server fails
      */
     public CurrentWeather getCurrentWeather(String cityName, boolean useHTTPS) throws IOException {
-        if(m_currentWeather != null && m_currentWeather.CalcTime.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+        if (m_currentWeather != null && m_currentWeather.CalcTime.plusSeconds(30).compareTo(Instant.now()) >= 0) {
             return m_currentWeather;
         }
         Map<String, String> params = new HashMap<>();
@@ -201,7 +201,7 @@ public class APIConnectionSingleton {
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
         CurrentWeather curr = extractCurrentWeatherData(result);
-        if(curr != null) m_currentWeather = curr;
+        if (curr != null) m_currentWeather = curr;
         return curr;
     }
 
@@ -214,7 +214,7 @@ public class APIConnectionSingleton {
      * @throws IOException If the location is invalid or the connection to the API server fails
      */
     public CurrentWeather getCurrentWeather(String lon, String lat, boolean useHTTPS) throws IOException {
-        if(m_currentWeather != null && m_currentWeather.CalcTime.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+        if (m_currentWeather != null && m_currentWeather.CalcTime.plusSeconds(30).compareTo(Instant.now()) >= 0) {
             return m_currentWeather;
         }
         Map<String, String> params = new HashMap<>();
@@ -223,12 +223,12 @@ public class APIConnectionSingleton {
         URL apiURL = createURL((useHTTPS) ? Protocol.HTTPS : Protocol.HTTP, "weather", params);
         String result = getConnectionContents(apiURL);
         CurrentWeather curr = extractCurrentWeatherData(result);
-        if(curr != null) m_currentWeather = curr;
+        if (curr != null) m_currentWeather = curr;
         return curr;
     }
 
     public Forecast getForecast(String cityName, boolean useHTTPS) throws IOException {
-        if(m_currentForecast != null && m_currentForecast.calculated.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+        if (m_currentForecast != null && m_currentForecast.calculated.plusSeconds(30).compareTo(Instant.now()) >= 0) {
             return m_currentForecast;
         }
         Map<String, String> params = new HashMap<>();
@@ -241,7 +241,7 @@ public class APIConnectionSingleton {
     }
 
     public Forecast getForecast(String lon, String lat, boolean useHTTPS) throws IOException {
-        if(m_currentForecast != null && m_currentForecast.calculated.plusSeconds(30).compareTo(Instant.now()) >= 0) {
+        if (m_currentForecast != null && m_currentForecast.calculated.plusSeconds(30).compareTo(Instant.now()) >= 0) {
             return m_currentForecast;
         }
         Map<String, String> params = new HashMap<>();

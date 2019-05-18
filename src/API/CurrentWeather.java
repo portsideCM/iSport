@@ -1,7 +1,6 @@
 package src.API;
 
 import java.time.Instant;
-import java.util.Date;
 
 public class CurrentWeather {
     public Instant CalcTime;
@@ -22,26 +21,22 @@ public class CurrentWeather {
     public String Description;
 
     public double getTempInCelsius(double tmp) {
-        if(TempUnit.equals("celsius")) {
+        if (TempUnit.equals("celsius")) {
             return tmp;
-        }
-        else if(TempUnit.equals("fahrenheit")) {
+        } else if (TempUnit.equals("fahrenheit")) {
             return (tmp - 32) / 1.8;
-        }
-        else {
+        } else {
             // Kelvin stuff
             return (tmp - 273.15);
         }
     }
 
     public double getTempInFarenheit(double tmp) {
-        if(TempUnit.equals("celsius")) {
+        if (TempUnit.equals("celsius")) {
             return (tmp * 1.8) + 32;
-        }
-        else if(TempUnit.equals("fahrenheit")) {
+        } else if (TempUnit.equals("fahrenheit")) {
             return tmp;
-        }
-        else {
+        } else {
             //More Kelvin
             return (tmp - 273.15) * 1.8 + 32;
         }
